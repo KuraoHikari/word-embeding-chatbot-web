@@ -10,26 +10,36 @@ import Dashboard from "./pages/dashboard/Dashboard";
 // import Search from "./pages/Search";
 // import Settings from "./pages/Settings";
 // import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/common/ProtectedRoute";
+
+import AuthGuard from "./components/common/AuthGuard";
+import AuthPage from "./pages/auth/AuthPage";
 
 export const router = createBrowserRouter([
  // Auth routes (without sidebar layout)
- //  {
- //   path: "/login",
- //   element: <Login />,
- //  },
- //  {
- //   path: "/register",
- //   element: <Register />,
- //  },
+ {
+  path: "/login",
+  element: (
+   <AuthGuard requireAuth={false}>
+    <AuthPage mode="login" />
+   </AuthGuard>
+  ),
+ },
+ {
+  path: "/register",
+  element: (
+   <AuthGuard requireAuth={false}>
+    <AuthPage mode="register" />
+   </AuthGuard>
+  ),
+ },
 
  // Main app routes (with sidebar layout)
  {
   path: "/",
   element: (
-   <ProtectedRoute>
+   <AuthGuard>
     <Layout />
-   </ProtectedRoute>
+   </AuthGuard>
   ),
   //   errorElement: <NotFound />,
   children: [
@@ -41,26 +51,7 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard />,
    },
-   //    {
-   //     path: "projects",
-   //     element: <Projects />,
-   //    },
-   //    {
-   //     path: "users",
-   //     element: <Users />,
-   //    },
-   //    {
-   //     path: "calendar",
-   //     element: <Calendar />,
-   //    },
-   //    {
-   //     path: "search",
-   //     element: <Search />,
-   //    },
-   //    {
-   //     path: "settings",
-   //     element: <Settings />,
-   //    },
+   // Add more protected routes here
   ],
  },
 ]);
