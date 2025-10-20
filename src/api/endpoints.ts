@@ -12,40 +12,6 @@ export const endpoints = {
   resetPassword: `auth/reset-password`,
  },
 
- // User endpoints
- users: {
-  list: `users`,
-  create: `users`,
-  detail: (id: string) => `users/${id}`,
-  update: (id: string) => `users/${id}`,
-  delete: (id: string) => `users/${id}`,
-  avatar: (id: string) => `users/${id}/avatar`,
- },
-
- // Project endpoints
- projects: {
-  list: `projects`,
-  create: `projects`,
-  detail: (id: string) => `projects/${id}`,
-  update: (id: string) => `projects/${id}`,
-  delete: (id: string) => `projects/${id}`,
-  members: (id: string) => `projects/${id}/members`,
-  addMember: (id: string) => `projects/${id}/members`,
-  removeMember: (id: string, memberId: string) => `projects/${id}/members/${memberId}`,
-  tasks: (id: string) => `projects/${id}/tasks`,
- },
-
- // Task endpoints
- tasks: {
-  list: `tasks`,
-  create: `tasks`,
-  detail: (id: string) => `tasks/${id}`,
-  update: (id: string) => `tasks/${id}`,
-  delete: (id: string) => `tasks/${id}`,
-  assign: (id: string) => `tasks/${id}/assign`,
-  comments: (id: string) => `tasks/${id}/comments`,
- },
-
  // Dashboard endpoints
  dashboard: {
   stats: `dashboard/stats`,
@@ -57,6 +23,15 @@ export const endpoints = {
  files: {
   upload: `files/upload`,
   delete: (id: string) => `files/${id}`,
+ },
+
+ // Chatbot endpoints
+ chatbots: {
+  list: `chatbots`,
+  create: `chatbots`,
+  getById: (id: number) => `chatbots/${id}`,
+  update: (id: number) => `chatbots/${id}`,
+  delete: (id: number) => `chatbots/${id}`,
  },
 } as const;
 
