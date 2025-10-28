@@ -18,7 +18,8 @@ export const useLoginMutation = () => {
 
   return useMutation({
     mutationFn: async (data: LoginFormData): Promise<LoginResponse> => {
-      return apiClient.post("auth/login", { json: data }).json();
+      const response = await apiClient.post("auth/login", data);
+      return response.data;
     },
     onSuccess: (response) => {
       login(response.user, response.access_token);
@@ -30,7 +31,8 @@ export const useLoginMutation = () => {
 export const useRegisterMutation = () => {
   return useMutation({
     mutationFn: async (data: RegisterFormData): Promise<LoginResponse> => {
-      return apiClient.post("auth/register", { json: data }).json();
+      const response = await apiClient.post("auth/register", data);
+      return response.data;
     },
   });
 };

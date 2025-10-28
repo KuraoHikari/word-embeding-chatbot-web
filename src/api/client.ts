@@ -1,73 +1,79 @@
-import ky from "ky";
+import axios from "axios";
 import { useAuthStore } from "@/store/authStore";
 import type { ApiError } from "./types";
 
-// Create API client
-export const apiClient = ky.create({
- prefixUrl: import.meta.env.VITE_API_URL || "http://localhost:9999",
- timeout: 30000,
- retry: {
-  limit: 2,
-  methods: ["get"],
-  statusCodes: [408, 413, 429, 500, 502, 503, 504],
- },
- hooks: {
-  beforeRequest: [
-   (request) => {
+// Create API client with axios
+export const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:9999",
+  headers: {
+    Accept: "application/json",
+  },
+});
+
+// Request interceptor - add auth token
+apiClient.interceptors.request.use(
+  (config) => {
     const token = localStorage.getItem("auth-token");
     if (token) {
-     request.headers.set("Authorization", `Bearer ${token}`);
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
-    // Add common headers
-    request.headers.set("Accept", "application/json");
-    if (!(request.body instanceof FormData)) {
-     request.headers.set("Content-Type", "application/json");
-    }
-   },
-  ],
-  afterResponse: [
-   async (_, __, response) => {
-    // Handle successful responses
-    if (response.ok) {
-     return response;
-    }
+    // Axios automatically handles Content-Type for FormData
+    // No need to manually set it!
 
-    // Handle different error status codes
-    if (response.status === 401) {
-     // Clear auth state and redirect to login
-     const { logout } = useAuthStore.getState();
-     logout();
-     window.location.href = "/login";
-     throw new Error("Unauthorized");
-    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-    if (response.status === 403) {
-     throw new Error("Forbidden: You do not have permission to perform this action");
-    }
-
-    if (response.status === 404) {
-     throw new Error("Resource not found");
-    }
-
-    if (response.status >= 500) {
-     throw new Error("Server error. Please try again later.");
-    }
-
-    // Try to get error message from response
-    try {
-     const errorData: ApiError = await response.json();
-     throw new Error(errorData.message || "An unexpected error occurred");
-    } catch {
-     throw new Error("An unexpected error occurred");
-    }
-   },
-  ],
-  beforeError: [
-   (error) => {
+// Response interceptor - handle errors
+apiClient.interceptors.response.use(
+  (response) => {
+    // Return the data directly
+    return response;
+  },
+  (error) => {
     console.error("API Error:", error);
-    return error;
-   },
-  ],
- },
-});
+
+    if (error.response) {
+      const status = error.response.status;
+
+      // Handle different error status codes
+      if (status === 401) {
+        // Clear auth state and redirect to login
+        const { logout } = useAuthStore.getState();
+        logout();
+        window.location.href = "/login";
+        return Promise.reject(new Error("Unauthorized"));
+      }
+
+      if (status === 403) {
+        return Promise.reject(
+          new Error(
+            "Forbidden: You do not have permission to perform this action"
+          )
+        );
+      }
+
+      if (status === 404) {
+        return Promise.reject(new Error("Resource not found"));
+      }
+
+      if (status >= 500) {
+        return Promise.reject(
+          new Error("Server error. Please try again later.")
+        );
+      }
+
+      // Try to get error message from response
+      const errorData: ApiError = error.response.data;
+      return Promise.reject(
+        new Error(errorData.message || "An unexpected error occurred")
+      );
+    }
+
+    return Promise.reject(new Error("An unexpected error occurred"));
+  }
+);
