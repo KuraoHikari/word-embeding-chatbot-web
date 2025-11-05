@@ -17,6 +17,7 @@ import ChatbotList from "./pages/chatbot/ChatbotList";
 import CreateChatbot from "./pages/chatbot/CreateChatbot";
 import ChatbotDetails from "./pages/chatbot/ChatbotDetails";
 import EditChatbot from "./pages/chatbot/EditChatbot";
+import ChatbotDetailsMock from "./pages/chatbot/ChatbotDetailsMock";
 
 export const router = createBrowserRouter([
   // Auth routes (without sidebar layout)
@@ -77,7 +78,7 @@ export const router = createBrowserRouter([
       },
       {
         path: ":id",
-        element: <ChatbotDetails />,
+        element: <ChatbotDetailsMock />,
       },
       {
         path: ":id/edit",
