@@ -33,6 +33,11 @@ export const endpoints = {
   update: (id: number) => `chatbots/${id}`,
   delete: (id: number) => `chatbots/${id}`,
  },
+
+ // Message endpoints
+ messages: {
+  create: `messages`,
+ },
 } as const;
 
 // Helper function to build query string

@@ -15,7 +15,7 @@ export default function Layout() {
      <Outlet />
     </div>
    </SidebarInset>
-   <SidebarRight />
+   {/* <SidebarRight /> */}
   </SidebarProvider>
  );
 }
