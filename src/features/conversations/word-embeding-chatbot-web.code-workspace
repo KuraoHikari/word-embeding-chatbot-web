@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../word-embeding-chatbot-api"
+		}
+	],
+	"settings": {}
+}

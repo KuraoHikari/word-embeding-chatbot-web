@@ -11,6 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useGetChatbotDetail, useDeleteChatbot } from "@/api/queries/chatbot";
 import { useCreateMessage } from "@/api/queries/message";
 import type { Message } from "@/api/types";
+import { ConversationsTab } from "@/features/conversations";
 
 interface ChatMessage {
  id: string;
@@ -624,19 +625,7 @@ export default function ChatbotDetailsMock() {
     </TabsContent>
 
     <TabsContent value="conversations">
-     <Card>
-      <CardHeader>
-       <CardTitle className="flex items-center gap-2">
-        <MessageSquare className="w-5 h-5" />
-        Recent Conversations
-       </CardTitle>
-       <CardDescription>View and analyze recent chatbot conversations</CardDescription>
-      </CardHeader>
-      <CardContent className="text-center py-12">
-       <MessageSquare className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-       <p className="text-muted-foreground">Conversation history coming soon. This will show recent conversations and allow you to analyze interactions.</p>
-      </CardContent>
-     </Card>
+     <ConversationsTab chatbotId={chatbotId} />
     </TabsContent>
    </Tabs>
   </div>

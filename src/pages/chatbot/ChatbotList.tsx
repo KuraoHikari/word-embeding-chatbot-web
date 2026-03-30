@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Plus, Bot, Edit, Trash2, MessageSquare } from "lucide-react";
+import { Plus, Bot, Edit, Trash2, MessageSquare, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -109,10 +109,16 @@ export default function ChatbotList() {
          <div>{chatbot.createdAt ? new Date(chatbot.createdAt).toLocaleDateString() : "N/A"}</div>
         </div>
        </CardContent>
-       <CardFooter className="flex gap-2">
+       <CardFooter className="flex flex-wrap gap-2">
         <Link to={`/chatbot/${chatbot.id}`} className="flex-1">
          <Button variant="outline" className="w-full">
           View Details
+         </Button>
+        </Link>
+        <Link to={`/chatbot/${chatbot.id}/compare/upload`}>
+         <Button variant="outline" size="sm" className="gap-1" title="Compare 2 experiment JSON outputs for this chatbot">
+          <BarChart3 className="w-4 h-4" />
+          Compare
          </Button>
         </Link>
         <Link to={`/chatbot/${chatbot.id}/edit`}>

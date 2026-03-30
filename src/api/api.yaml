@@ -1,0 +1,2179 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Word Embedding Chatbot API
+components:
+  schemas: {}
+  parameters: {}
+paths:
+  /:
+    get:
+      tags:
+        - Index
+      responses:
+        "200":
+          description: Welcome to the Word Embedding Chatbot API! Index
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Welcome to the Word Embedding Chatbot API!
+  /tasks:
+    get:
+      tags:
+        - Tasks
+      responses:
+        "200":
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    done:
+                      type: boolean
+                    createdAt:
+                      type: string
+                      nullable: true
+                    updatedAt:
+                      type: string
+                      nullable: true
+                  required:
+                    - id
+                    - name
+                    - done
+                    - createdAt
+                    - updatedAt
+    post:
+      tags:
+        - Tasks
+      requestBody:
+        description: The task to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                done:
+                  type: boolean
+              required:
+                - name
+                - done
+      responses:
+        "200":
+          description: The Create task
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  done:
+                    type: boolean
+                  createdAt:
+                    type: string
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    nullable: true
+                required:
+                  - id
+                  - name
+                  - done
+                  - createdAt
+                  - updatedAt
+        "422":
+          description: The validation error(s)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: object
+                    properties:
+                      issues:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                            path:
+                              type: array
+                              items:
+                                anyOf:
+                                  - type: string
+                                  - type: number
+                            message:
+                              type: string
+                          required:
+                            - code
+                            - path
+                      name:
+                        type: string
+                    required:
+                      - issues
+                      - name
+                    example:
+                      issues:
+                        - code: invalid_type
+                          expected: string
+                          received: undefined
+                          path:
+                            - name
+                          message: Required
+                        - code: invalid_type
+                          expected: boolean
+                          received: undefined
+                          path:
+                            - done
+                          message: Required
+                      name: ZodError
+                required:
+                  - success
+                  - error
+  /tasks/{id}:
+    get:
+      security:
+        - AuthorizationBearer: []
+      tags:
+        - Tasks
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: The required tasks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  done:
+                    type: boolean
+                  createdAt:
+                    type: string
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    nullable: true
+                required:
+                  - id
+                  - name
+                  - done
+                  - createdAt
+                  - updatedAt
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Not Found
+        "422":
+          description: Invalid id error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: object
+                    properties:
+                      issues:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                            path:
+                              type: array
+                              items:
+                                anyOf:
+                                  - type: string
+                                  - type: number
+                            message:
+                              type: string
+                          required:
+                            - code
+                            - path
+                      name:
+                        type: string
+                    required:
+                      - issues
+                      - name
+                    example:
+                      issues:
+                        - code: invalid_type
+                          expected: number
+                          received: nan
+                          path:
+                            - id
+                          message: Expected number, received nan
+                      name: ZodError
+                required:
+                  - success
+                  - error
+    patch:
+      tags:
+        - Tasks
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+      requestBody:
+        description: The task updates
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                done:
+                  type: boolean
+      responses:
+        "200":
+          description: The updated task
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  done:
+                    type: boolean
+                  createdAt:
+                    type: string
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    nullable: true
+                required:
+                  - id
+                  - name
+                  - done
+                  - createdAt
+                  - updatedAt
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Not Found
+        "422":
+          description: The validation error(s)
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                      error:
+                        type: object
+                        properties:
+                          issues:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                path:
+                                  type: array
+                                  items:
+                                    anyOf:
+                                      - type: string
+                                      - type: number
+                                message:
+                                  type: string
+                              required:
+                                - code
+                                - path
+                          name:
+                            type: string
+                        required:
+                          - issues
+                          - name
+                    required:
+                      - success
+                      - error
+                  - type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                      error:
+                        type: object
+                        properties:
+                          issues:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                path:
+                                  type: array
+                                  items:
+                                    anyOf:
+                                      - type: string
+                                      - type: number
+                                message:
+                                  type: string
+                              required:
+                                - code
+                                - path
+                          name:
+                            type: string
+                        required:
+                          - issues
+                          - name
+                        example:
+                          issues:
+                            - code: invalid_type
+                              expected: number
+                              received: nan
+                              path:
+                                - id
+                              message: Expected number, received nan
+                          name: ZodError
+                    required:
+                      - success
+                      - error
+    delete:
+      tags:
+        - Tasks
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+      responses:
+        "204":
+          description: Task deleted
+        "404":
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Not Found
+        "422":
+          description: Invalid id error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: object
+                    properties:
+                      issues:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                            path:
+                              type: array
+                              items:
+                                anyOf:
+                                  - type: string
+                                  - type: number
+                            message:
+                              type: string
+                          required:
+                            - code
+                            - path
+                      name:
+                        type: string
+                    required:
+                      - issues
+                      - name
+                    example:
+                      issues:
+                        - code: invalid_type
+                          expected: number
+                          received: nan
+                          path:
+                            - id
+                          message: Expected number, received nan
+                      name: ZodError
+                required:
+                  - success
+                  - error
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      requestBody:
+        description: The user to login
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  minLength: 8
+                  maxLength: 500
+                email:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                  format: email
+              required:
+                - password
+                - email
+      responses:
+        "200":
+          description: The login response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      email:
+                        type: string
+                      name:
+                        type: string
+                    required:
+                      - id
+                      - email
+                      - name
+                  access_token:
+                    type: string
+                required:
+                  - user
+                  - access_token
+        "401":
+          description: The invalid credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Unauthorized
+        "422":
+          description: The validation error(s)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: object
+                    properties:
+                      issues:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                            path:
+                              type: array
+                              items:
+                                anyOf:
+                                  - type: string
+                                  - type: number
+                            message:
+                              type: string
+                          required:
+                            - code
+                            - path
+                      name:
+                        type: string
+                    required:
+                      - issues
+                      - name
+                    example:
+                      issues:
+                        - code: invalid_type
+                          expected: string
+                          received: undefined
+                          path:
+                            - name
+                          message: Required
+                        - code: invalid_type
+                          expected: string
+                          received: undefined
+                          path:
+                            - password
+                          message: Required
+                        - code: invalid_type
+                          expected: string
+                          received: undefined
+                          path:
+                            - email
+                          message: Required
+                      name: ZodError
+                required:
+                  - success
+                  - error
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      requestBody:
+        description: The user to register
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                password:
+                  type: string
+                  minLength: 8
+                  maxLength: 500
+                email:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                  format: email
+              required:
+                - name
+                - password
+                - email
+      responses:
+        "201":
+          description: The registration response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Created
+        "409":
+          description: The user already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Conflict
+        "422":
+          description: The validation error(s)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: object
+                    properties:
+                      issues:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                            path:
+                              type: array
+                              items:
+                                anyOf:
+                                  - type: string
+                                  - type: number
+                            message:
+                              type: string
+                          required:
+                            - code
+                            - path
+                      name:
+                        type: string
+                    required:
+                      - issues
+                      - name
+                    example:
+                      issues:
+                        - code: invalid_type
+                          expected: string
+                          received: undefined
+                          path:
+                            - name
+                          message: Required
+                        - code: invalid_type
+                          expected: string
+                          received: undefined
+                          path:
+                            - password
+                          message: Required
+                        - code: invalid_type
+                          expected: string
+                          received: undefined
+                          path:
+                            - email
+                          message: Required
+                      name: ZodError
+                required:
+                  - success
+                  - error
+  /auth/me:
+    get:
+      tags:
+        - Auth
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: The user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  email:
+                    type: string
+                  name:
+                    type: string
+                required:
+                  - id
+                  - email
+                  - name
+        "401":
+          description: The invalid credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Unauthorized
+        "429":
+          description: The rate limit errors
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+                example:
+                  message: Too Many Requests
+  /chatbots:
+    get:
+      tags:
+        - Chatbots
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: List of chatbots
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    title:
+                      type: string
+                    description:
+                      type: string
+                      nullable: true
+                    isPublic:
+                      type: boolean
+                    welcomeMessage:
+                      type: string
+                    suggestionMessage:
+                      type: string
+                    systemPrompt:
+                      type: string
+                    aiModel:
+                      type: string
+                    isProposedModel:
+                      type: boolean
+                    embeddingModel:
+                      type: string
+                    temperature:
+                      type: number
+                    maxTokens:
+                      type: number
+                    pdfTitle:
+                      type: string
+                    pdfLink:
+                      type: string
+                    userId:
+                      type: number
+                    createdAt:
+                      type: string
+                      nullable: true
+                    updatedAt:
+                      type: string
+                      nullable: true
+                  required:
+                    - id
+                    - title
+                    - description
+                    - isPublic
+                    - welcomeMessage
+                    - suggestionMessage
+                    - systemPrompt
+                    - aiModel
+                    - isProposedModel
+                    - embeddingModel
+                    - temperature
+                    - maxTokens
+                    - pdfTitle
+                    - pdfLink
+                    - userId
+                    - createdAt
+                    - updatedAt
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    post:
+      tags:
+        - Chatbots
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  maxLength: 100
+                description:
+                  type: string
+                  nullable: true
+                  minLength: 1
+                  maxLength: 500
+                isPublic:
+                  type: boolean
+                welcomeMessage:
+                  type: string
+                  minLength: 1
+                  maxLength: 1000
+                suggestionMessage:
+                  type: string
+                  minLength: 1
+                  maxLength: 1000
+                systemPrompt:
+                  type: string
+                  minLength: 1
+                  maxLength: 2000
+                aiModel:
+                  type: string
+                isProposedModel:
+                  type: boolean
+                embeddingModel:
+                  type: string
+                temperature:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                  default: 0.3
+                maxTokens:
+                  type: integer
+                  minimum: 100
+                  maximum: 2000
+                  default: 500
+                pdf:
+                  anyOf:
+                    - {}
+                    - {}
+                  description: PDF file upload
+                  format: binary
+              required:
+                - title
+                - description
+                - isPublic
+                - welcomeMessage
+                - suggestionMessage
+                - aiModel
+                - isProposedModel
+                - embeddingModel
+      responses:
+        "201":
+          description: Chatbot created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "413":
+          description: File size exceeds limit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /chatbots/{id}:
+    get:
+      tags:
+        - Chatbots
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: Chatbot retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  title:
+                    type: string
+                  description:
+                    type: string
+                    nullable: true
+                  isPublic:
+                    type: boolean
+                  welcomeMessage:
+                    type: string
+                  suggestionMessage:
+                    type: string
+                  systemPrompt:
+                    type: string
+                  aiModel:
+                    type: string
+                  isProposedModel:
+                    type: boolean
+                  embeddingModel:
+                    type: string
+                  temperature:
+                    type: number
+                  maxTokens:
+                    type: number
+                  pdfTitle:
+                    type: string
+                  pdfLink:
+                    type: string
+                  userId:
+                    type: number
+                  createdAt:
+                    type: string
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    nullable: true
+                  totalMessages:
+                    type: number
+                    minimum: 0
+                    description: Total messages sent in the chatbot
+                  totalConversations:
+                    type: number
+                    minimum: 0
+                    description: Total conversations started with the chatbot
+                  totalAiResponses:
+                    type: number
+                    minimum: 0
+                    description: Total AI responses generated by the chatbot
+                  testConversationId:
+                    type: integer
+                    nullable: true
+                    description: Test conversation ID for the chatbot
+                required:
+                  - id
+                  - title
+                  - description
+                  - isPublic
+                  - welcomeMessage
+                  - suggestionMessage
+                  - systemPrompt
+                  - aiModel
+                  - isProposedModel
+                  - embeddingModel
+                  - temperature
+                  - maxTokens
+                  - pdfTitle
+                  - pdfLink
+                  - userId
+                  - createdAt
+                  - updatedAt
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Chatbot not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    patch:
+      tags:
+        - Chatbots
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  maxLength: 100
+                description:
+                  type: string
+                  nullable: true
+                  minLength: 1
+                  maxLength: 500
+                isPublic:
+                  type: boolean
+                welcomeMessage:
+                  type: string
+                  minLength: 1
+                  maxLength: 1000
+                suggestionMessage:
+                  type: string
+                  minLength: 1
+                  maxLength: 1000
+                systemPrompt:
+                  type: string
+                  minLength: 1
+                  maxLength: 2000
+                aiModel:
+                  type: string
+                isProposedModel:
+                  type: boolean
+                embeddingModel:
+                  type: string
+                temperature:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                maxTokens:
+                  type: integer
+                  minimum: 100
+                  maximum: 2000
+                pdf:
+                  anyOf:
+                    - {}
+                    - {}
+                  description: PDF file upload (optional - only if retraining)
+                  format: binary
+      responses:
+        "200":
+          description: Chatbot updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Chatbot not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "422":
+          description: The validation error(s)
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                      error:
+                        type: object
+                        properties:
+                          issues:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                path:
+                                  type: array
+                                  items:
+                                    anyOf:
+                                      - type: string
+                                      - type: number
+                                message:
+                                  type: string
+                              required:
+                                - code
+                                - path
+                          name:
+                            type: string
+                        required:
+                          - issues
+                          - name
+                    required:
+                      - success
+                      - error
+                  - type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                      error:
+                        type: object
+                        properties:
+                          issues:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                path:
+                                  type: array
+                                  items:
+                                    anyOf:
+                                      - type: string
+                                      - type: number
+                                message:
+                                  type: string
+                              required:
+                                - code
+                                - path
+                          name:
+                            type: string
+                        required:
+                          - issues
+                          - name
+                        example:
+                          issues:
+                            - code: invalid_type
+                              expected: number
+                              received: nan
+                              path:
+                                - id
+                              message: Expected number, received nan
+                          name: ZodError
+                    required:
+                      - success
+                      - error
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    delete:
+      tags:
+        - Chatbots
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: Chatbot deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Chatbot not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /contacts:
+    get:
+      tags:
+        - Contacts
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: List of contacts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    phone:
+                      type: string
+                      nullable: true
+                    userId:
+                      type: number
+                    createdAt:
+                      type: string
+                      nullable: true
+                    updatedAt:
+                      type: string
+                      nullable: true
+                  required:
+                    - id
+                    - name
+                    - email
+                    - phone
+                    - userId
+                    - createdAt
+                    - updatedAt
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    post:
+      tags:
+        - Contacts
+      requestBody:
+        description: The contact to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                email:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                  format: email
+                phone:
+                  type: string
+                  nullable: true
+                  minLength: 1
+                  maxLength: 500
+                chatbotId:
+                  type: number
+              required:
+                - name
+                - email
+                - chatbotId
+      responses:
+        "200":
+          description: Contact created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                required:
+                  - access_token
+        "404":
+          description: Chatbot not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "413":
+          description: Request Entity Too Large
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /contacts/{id}:
+    delete:
+      tags:
+        - Contacts
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: Contact deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /conversations:
+    get:
+      tags:
+        - Conversations
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: List of conversations with last message
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    userId:
+                      type: number
+                    chatbotId:
+                      type: number
+                    contactId:
+                      type: number
+                    autoReply:
+                      type: boolean
+                    createdAt:
+                      type: string
+                      nullable: true
+                    updatedAt:
+                      type: string
+                      nullable: true
+                    lastMessage:
+                      type: object
+                      nullable: true
+                      properties:
+                        id:
+                          type: number
+                        text:
+                          type: string
+                        conversationId:
+                          type: number
+                        userId:
+                          type: number
+                        isBot:
+                          type: boolean
+                        createdAt:
+                          type: string
+                          nullable: true
+                        updatedAt:
+                          type: string
+                          nullable: true
+                      required:
+                        - id
+                        - text
+                        - conversationId
+                        - userId
+                        - isBot
+                        - createdAt
+                        - updatedAt
+                    contact:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        name:
+                          type: string
+                        email:
+                          type: string
+                        phone:
+                          type: string
+                          nullable: true
+                        userId:
+                          type: number
+                        createdAt:
+                          type: string
+                          nullable: true
+                        updatedAt:
+                          type: string
+                          nullable: true
+                      required:
+                        - id
+                        - name
+                        - email
+                        - phone
+                        - userId
+                        - createdAt
+                        - updatedAt
+                  required:
+                    - id
+                    - userId
+                    - chatbotId
+                    - contactId
+                    - autoReply
+                    - createdAt
+                    - updatedAt
+                    - lastMessage
+                    - contact
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    post:
+      tags:
+        - Conversations
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      requestBody:
+        description: The conversation to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chatbotId:
+                  type: number
+                  minimum: 1
+                  maximum: 500
+                autoReply:
+                  type: boolean
+              required:
+                - chatbotId
+      responses:
+        "201":
+          description: Conversation created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  userId:
+                    type: number
+                  chatbotId:
+                    type: number
+                  contactId:
+                    type: number
+                  autoReply:
+                    type: boolean
+                  createdAt:
+                    type: string
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    nullable: true
+                required:
+                  - id
+                  - userId
+                  - chatbotId
+                  - contactId
+                  - autoReply
+                  - createdAt
+                  - updatedAt
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Chatbot not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /conversations/{id}:
+    get:
+      tags:
+        - Conversations
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: Conversation found with all messages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  userId:
+                    type: number
+                  chatbotId:
+                    type: number
+                  contactId:
+                    type: number
+                  autoReply:
+                    type: boolean
+                  createdAt:
+                    type: string
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    nullable: true
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        text:
+                          type: string
+                        conversationId:
+                          type: number
+                        userId:
+                          type: number
+                        isBot:
+                          type: boolean
+                        createdAt:
+                          type: string
+                          nullable: true
+                        updatedAt:
+                          type: string
+                          nullable: true
+                      required:
+                        - id
+                        - text
+                        - conversationId
+                        - userId
+                        - isBot
+                        - createdAt
+                        - updatedAt
+                required:
+                  - id
+                  - userId
+                  - chatbotId
+                  - contactId
+                  - autoReply
+                  - createdAt
+                  - updatedAt
+                  - messages
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    patch:
+      tags:
+        - Conversations
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      requestBody:
+        description: The conversation fields to update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                autoReply:
+                  type: boolean
+      responses:
+        "200":
+          description: Conversation updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  userId:
+                    type: number
+                  chatbotId:
+                    type: number
+                  contactId:
+                    type: number
+                  autoReply:
+                    type: boolean
+                  createdAt:
+                    type: string
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    nullable: true
+                required:
+                  - id
+                  - userId
+                  - chatbotId
+                  - contactId
+                  - autoReply
+                  - createdAt
+                  - updatedAt
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    delete:
+      tags:
+        - Conversations
+      parameters:
+        - schema:
+            type: number
+            nullable: true
+            required:
+              - id
+            example: 42
+          required: true
+          name: id
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      responses:
+        "200":
+          description: Conversation deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Conversation not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /messages:
+    post:
+      tags:
+        - Messages
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: authorization
+          in: header
+      requestBody:
+        description: The message to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                conversationId:
+                  type: number
+                  minimum: 1
+                  maximum: 500
+                chatbotId:
+                  type: number
+                  minimum: 1
+                  maximum: 500
+                results:
+                  nullable: true
+              required:
+                - text
+                - conversationId
+                - chatbotId
+      responses:
+        "201":
+          description: Message created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  text:
+                    type: string
+                  conversationId:
+                    type: number
+                  userId:
+                    type: number
+                  isBot:
+                    type: boolean
+                  createdAt:
+                    type: string
+                    nullable: true
+                  updatedAt:
+                    type: string
+                    nullable: true
+                required:
+                  - id
+                  - text
+                  - conversationId
+                  - userId
+                  - isBot
+                  - createdAt
+                  - updatedAt
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "404":
+          description: Chatbot not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message

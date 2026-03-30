@@ -1,0 +1,263 @@
+[
+  {
+    "id": 11,
+    "text": "Halo! Ada yang bisa saya bantu?",
+    "conversationId": 1,
+    "userId": 1,
+    "isBot": true,
+    "createdAt": "2026-02-23T02:41:06.000Z",
+    "updatedAt": "2026-02-23T02:41:06.000Z",
+    "results": {
+      "status": "success",
+      "query": "hai",
+      "processing_time": 3.1324803829193115,
+      "model_approach": "baseline",
+      "pipeline_steps": [
+        "Preprocessing (Case Folding + Stopword Removal)",
+        "FastText Embedding",
+        "Cosine Similarity Calculation",
+        "Top-k Retrieval",
+        "ChatGPT Generation (optional)",
+        "RAGAS Evaluation (optional)"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "text": "maximum stay durasi maksimum untuk menginap optional extras anda dapat menawarkan hal lainnya selain kamar, seperti airport transfer, spa, dan lainnya pada optional extra. jika masih kosong anda mesti membuatkan terlebih dahulu melalui menu optional extra. geo extra discount anda dapat memberikan diskon tambahan berdasarkan negara asal tamu. diskon hanya akan muncul di negara yang dipilih saja. stay date waktu tinggal / menginap untuk promo. sale date jangka waktu pemesanan promo (booking window) selling by time beri tanda rumput jika anda ingin mengcustom waktu penjualan lebih spesifik. adjust room occupants anda dapat mengatur berapa banyak orang yang dapat menginap dengan fitur ini. 3.9.3. bonus night promotion (staypay)",
+          "similarity_score": 0.9264463935013426,
+          "doc_index": 60,
+          "method": "fasttext_cosine_similarity"
+        },
+        {
+          "rank": 2,
+          "text": "optional extras anda dapat menawarkan hal lainnya selain kamar, seperti airport transfer, spa, dan lainnya pada optional extra geo extra discount anda dapat memberikan diskon tambahan berdasarkan negara asal tamu. diskon hanya akan muncul di negara yang dipilih saja. stay date waktu tinggal / menginap untuk promo. sale date jangka waktu pemesanan promo (booking window) selling by time beri tanda rumput jika anda ingin mengcustom waktu penjualan lebih spesifik. adjust room occupants anda dapat mengatur berapa banyak orang yang dapat menginap dengan fitur ini. (abaikan jika tidak diperlukan) 3.9.4. early bird early bird diberikan kepada travelers yang memesan hotel jauh-jauh hari bahkan 1 tahun sebelum hari check in. promo ini bermacam-macam",
+          "similarity_score": 0.9070336321985795,
+          "doc_index": 66,
+          "method": "fasttext_cosine_similarity"
+        },
+        {
+          "rank": 3,
+          "text": "contoh diatas promo dengan diskon berjenjang 20% untuk stay 2 malam, 30% untuk stay 5 malam, dan 50% untuk stay 7 malam. anda dapat menambahkan periode diskon dengan menekan tombol “add discount”. diskon akan memotong harga dasar (harga bar) dari setiap tipe kamar yang kita apply untuk promosi tersebut. 3.10. optional extra 3.10.1. optional extra optional extra adalah fitur untuk anda dapat menjual instrumen lainnya diluar akomodasi seperti : spa, transport, dan aktivitas liburan lainnya. contoh tampilan optional extra pada halaman reservasi :",
+          "similarity_score": 0.9062565664344028,
+          "doc_index": 70,
+          "method": "fasttext_cosine_similarity"
+        }
+      ],
+      "metadata": {
+        "model_type": "fasttext_baseline",
+        "documents_count": 84,
+        "embedding_dimension": 300,
+        "hyperparameters": {
+          "vector_size": 300,
+          "window": 5,
+          "min_count": 1,
+          "workers": 4,
+          "epochs": 20,
+          "alpha": 0.05,
+          "min_alpha": 0.000005,
+          "sg": 1,
+          "hs": 0,
+          "negative": 10,
+          "bucket": 100000,
+          "min_n": 3,
+          "max_n": 6
+        },
+        "features_used": {
+          "semantic_search": true,
+          "keyword_search": false,
+          "context_scoring": false,
+          "mmr_reranking": false,
+          "gpt_generation": true,
+          "ragas_evaluation": true
+        }
+      },
+      "gpt_generation": {
+        "answer": "Halo! Ada yang bisa saya bantu?",
+        "model_used": "gpt-3.5-turbo",
+        "tokens_used": 877,
+        "prompt_tokens": 867,
+        "completion_tokens": 10
+      },
+      "ragas_evaluation": {
+        "context_relevance": 0,
+        "faithfulness": 0,
+        "answer_relevance": 0,
+        "overall_score": 0
+      }
+    }
+  },
+  {
+    "id": 13,
+    "text": "Untuk menambahkan room type, Anda dapat membuka menu setup, lalu pilih room type, dan selanjutnya pilih create new. Di sana, Anda bisa mengisi deskripsi room classification, room name, room code, room size, bedding preference, serta extra infant rate. Jika room classification yang dipilih adalah villa, Anda juga dapat menambahkan informasi mengenai tipe-tipe unit kamar yang dimiliki oleh villa tersebut. Jangan lupa untuk menyimpan perubahan yang telah Anda buat.",
+    "conversationId": 1,
+    "userId": 1,
+    "isBot": true,
+    "createdAt": "2026-02-23T02:41:35.000Z",
+    "updatedAt": "2026-02-23T02:41:35.000Z",
+    "results": {
+      "status": "success",
+      "query": "bagaimana caranya menambahkan room type?",
+      "processing_time": 3.0040791034698486,
+      "model_approach": "baseline",
+      "pipeline_steps": [
+        "Preprocessing (Case Folding + Stopword Removal)",
+        "FastText Embedding",
+        "Cosine Similarity Calculation",
+        "Top-k Retrieval",
+        "ChatGPT Generation (optional)",
+        "RAGAS Evaluation (optional)"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "text": "3.3. room setup 3.3.1. add room type fitur ini untuk diperuntukan untuk menambahkan tipe kamar pada property anda sebagai acuan dalam pembuatan promotion. untuk mengakses room type, buka menu setup > room type > create new elemen deskripsi room classification anda bisa memilih klasifikasi dari jenis unit kamar anda room name nama dari kamar anda room code kode kamar room size luas kamar ( masukan dalam satuan sqm ) bedding preference opsi untuk mengaktifkan pilihan jenis kasur",
+          "similarity_score": 0.899498360575608,
+          "doc_index": 26,
+          "method": "fasttext_cosine_similarity"
+        },
+        {
+          "rank": 2,
+          "text": "extra infant rate harga untuk extra bed / tambahan bayi fitur tambahan informasi untuk room classifications “villa” jika room classification yang dipilih adalah villa, maka akan muncul tambahan field input untuk informasi tipe-tipe unit kamar yg dimiliki oleh unit villa tsb. contoh kasus : room type : villa room name : jade villa room units : 1 kamar king/queen bed, 2 kamar queen bed. jadi totalnya 3 kamar. (sesuaikan dengan kamar yg dimiliki villa)",
+          "similarity_score": 0.8369842385923402,
+          "doc_index": 29,
+          "method": "fasttext_cosine_similarity"
+        },
+        {
+          "rank": 3,
+          "text": "elemen deskripsi room units informasi unit kamar yang dimiliki oleh villa select bedding preference jenis ukuran tempat tidur yang digunakan oleh unit kamar number input unit quantity jumlah unit kamar yang memiliki bedding preference yang sama",
+          "similarity_score": 0.8116605494262834,
+          "doc_index": 32,
+          "method": "fasttext_cosine_similarity"
+        }
+      ],
+      "metadata": {
+        "model_type": "fasttext_baseline",
+        "documents_count": 84,
+        "embedding_dimension": 300,
+        "hyperparameters": {
+          "vector_size": 300,
+          "window": 5,
+          "min_count": 1,
+          "workers": 4,
+          "epochs": 20,
+          "alpha": 0.05,
+          "min_alpha": 0.000005,
+          "sg": 1,
+          "hs": 0,
+          "negative": 10,
+          "bucket": 100000,
+          "min_n": 3,
+          "max_n": 6
+        },
+        "features_used": {
+          "semantic_search": true,
+          "keyword_search": false,
+          "context_scoring": false,
+          "mmr_reranking": false,
+          "gpt_generation": true,
+          "ragas_evaluation": true
+        }
+      },
+      "gpt_generation": {
+        "answer": "Untuk menambahkan room type, Anda dapat membuka menu setup, lalu pilih room type, dan selanjutnya pilih create new. Di sana, Anda bisa mengisi deskripsi room classification, room name, room code, room size, bedding preference, serta extra infant rate. Jika room classification yang dipilih adalah villa, Anda juga dapat menambahkan informasi mengenai tipe-tipe unit kamar yang dimiliki oleh villa tersebut. Jangan lupa untuk menyimpan perubahan yang telah Anda buat.",
+        "model_used": "gpt-3.5-turbo",
+        "tokens_used": 756,
+        "prompt_tokens": 643,
+        "completion_tokens": 113
+      },
+      "ragas_evaluation": {
+        "context_relevance": 0.8333333333333334,
+        "faithfulness": 0.8571428571428571,
+        "answer_relevance": 1,
+        "overall_score": 0.8761904761904762
+      }
+    }
+  },
+  {
+    "id": 15,
+    "text": "Untuk set payment configuration, Anda dapat mengakses menu setup > payment configuration. Di sana, Anda dapat mengatur jenis pembayaran atau metode pembayaran yang dimiliki oleh hotel/property, seperti bank transfer, credit card, doku, ipay88, paypal, dan lainnya. Anda juga dapat mengatur tipe pembayaran, jenis credit card yang diterima, payment expiration, dan redirecting after booking.",
+    "conversationId": 1,
+    "userId": 1,
+    "isBot": true,
+    "createdAt": "2026-02-23T02:42:19.000Z",
+    "updatedAt": "2026-02-23T02:42:19.000Z",
+    "results": {
+      "status": "success",
+      "query": "lalu untuk set payment configuration ada di bagian mana?",
+      "processing_time": 2.595816135406494,
+      "model_approach": "baseline",
+      "pipeline_steps": [
+        "Preprocessing (Case Folding + Stopword Removal)",
+        "FastText Embedding",
+        "Cosine Similarity Calculation",
+        "Top-k Retrieval",
+        "ChatGPT Generation (optional)",
+        "RAGAS Evaluation (optional)"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "text": "3.4. payment configuration 3.4.1. set payment configuration payment configuration adalah menu untuk mengatur jenis payment atau metode pembayaran yang dimiliki oleh hotel/property. untuk mengakses cancelation policy anda bisa mengakses : menu setup > payment configuration jenis pembayaran ini dapat anda buat sesuai dengan metode pembayaran yang sudah dimiliki oleh hotel, seperti : bank transfer, credit card, doku, ipay88, paypal, midtrans, faspay, xendit, red dot payment, jokul, dan mc payment. elemen deskripsi name adalah tipe payment/nama dari jenis payment untuk pembayaran dalam tiap reservasi.",
+          "similarity_score": 0.9455919934838384,
+          "doc_index": 34,
+          "method": "fasttext_cosine_similarity"
+        },
+        {
+          "rank": 2,
+          "text": "type tipe ini memungkinkan untuk memilih model pembayaran apa yang akan digunakan pada jenis payment ini. apply credit card jenis credit card apa saja yang dapat diterima oleh hotel dan dapat di apply oleh tamu yang akan digunakan sebagai jaminan. pembayaran dilakukan oleh tamu saat check-in payment expiration adalah kolom untuk mengisikan durasi/waktu yang akan diberikan ke tamu dalam melakukan proses pembayaran. diisi menggunakan acuan menit. contoh : kita ingin mengaktifkan payment bank transfer ( manual ) elemen deskripsi name adalah tipe payment/nama dari jenis payment untuk pembayaran dalam tiap reservasi. type tipe ini memungkinkan untuk memilih model pembayaran apa yang akan digunakan pada jenis payment ini.",
+          "similarity_score": 0.8805508658391008,
+          "doc_index": 35,
+          "method": "fasttext_cosine_similarity"
+        },
+        {
+          "rank": 3,
+          "text": "terdapat 3 kondisi pada bagian redirecting after booking, di antaranya: complete payment, unpaid payment, dan unfinished payment. masing-masing bagian diminta untuk memasukkan link redirect dan time out (jika tidak diinputkan maka akan tersetting default 5 detik). 3 kondisi tersebut di antaranya: a. complete payment complete payment berarti bahwa pembayaran telah berhasil dan status reservasi pengguna adalah confirm. berikut langkah-langkah untuk menambahkan link redirect dengan status complete payment:",
+          "similarity_score": 0.8800428225564254,
+          "doc_index": 22,
+          "method": "fasttext_cosine_similarity"
+        }
+      ],
+      "metadata": {
+        "model_type": "fasttext_baseline",
+        "documents_count": 84,
+        "embedding_dimension": 300,
+        "hyperparameters": {
+          "vector_size": 300,
+          "window": 5,
+          "min_count": 1,
+          "workers": 4,
+          "epochs": 20,
+          "alpha": 0.05,
+          "min_alpha": 0.000005,
+          "sg": 1,
+          "hs": 0,
+          "negative": 10,
+          "bucket": 100000,
+          "min_n": 3,
+          "max_n": 6
+        },
+        "features_used": {
+          "semantic_search": true,
+          "keyword_search": false,
+          "context_scoring": false,
+          "mmr_reranking": false,
+          "gpt_generation": true,
+          "ragas_evaluation": true
+        }
+      },
+      "gpt_generation": {
+        "answer": "Untuk set payment configuration, Anda dapat mengakses menu setup > payment configuration. Di sana, Anda dapat mengatur jenis pembayaran atau metode pembayaran yang dimiliki oleh hotel/property, seperti bank transfer, credit card, doku, ipay88, paypal, dan lainnya. Anda juga dapat mengatur tipe pembayaran, jenis credit card yang diterima, payment expiration, dan redirecting after booking.",
+        "model_used": "gpt-3.5-turbo",
+        "tokens_used": 867,
+        "prompt_tokens": 779,
+        "completion_tokens": 88
+      },
+      "ragas_evaluation": {
+        "context_relevance": 0.5555555555555555,
+        "faithfulness": 1,
+        "answer_relevance": 1,
+        "overall_score": 0.8222222222222222
+      }
+    }
+  }
+]

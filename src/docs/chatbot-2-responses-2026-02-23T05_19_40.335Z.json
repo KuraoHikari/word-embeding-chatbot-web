@@ -1,0 +1,418 @@
+[
+  {
+    "id": 17,
+    "text": "Halo! Ada yang bisa saya bantu?",
+    "conversationId": 2,
+    "userId": 1,
+    "isBot": true,
+    "createdAt": "2026-02-23T04:13:20.000Z",
+    "updatedAt": "2026-02-23T04:13:20.000Z",
+    "results": {
+      "status": "success",
+      "query": "hai",
+      "processing_time": 1.558957815170288,
+      "complexity_analysis": {
+        "type": "medium",
+        "score": 0.43000000000000005,
+        "word_count": 1,
+        "unique_words": 1,
+        "question_words": 0,
+        "weights_used": {
+          "fasttext": 0.4,
+          "bm25": 0.4,
+          "context": 0.2
+        }
+      },
+      "search_pipeline": {
+        "hybrid_search_results": 6,
+        "mmr_reranked_results": 3,
+        "mmr_lambda": 0.7,
+        "similarity_threshold": 0.4
+      },
+      "results": [
+        {
+          "rank": 1,
+          "text": "pengguna smartphone / mobile Cut of date jarak antara tamu reservasi hingga stay, ex. jika diisi “0” maka tamu dapat melakukan reservasi hari ini dan stay hari ini. Jika diisi “1” maka tamu dapat melakukan reservasi mulai hari ini untuk stay minimal 1 hari setelahnya. Minimum Stay Durasi minimum untuk menginap Maximum Stay Durasi maksimum untuk menginap Optional Extras Anda dapat menawarkan hal lainnya selain kamar, seperti airport transfer, spa, dan lainnya pada optional extra Geo Extra Discount Anda dapat memberikan diskon tambahan berdasarkan negara asal tamu. Diskon hanya akan muncul di negara yang dipilih saja. Stay Date Waktu tinggal / menginap untuk promo. Sale Date Jangka waktu pemesanan promo (booking window) Selling by Time Beri tanda rumput jika anda ingin mengcustom waktu penjualan lebih spesifik. Adjust Room Occupants Anda dapat mengatur berapa banyak orang yang dapat menginap dengan fitur ini. (abaikan jika tidak diperlukan) 3.9.4. Early Bird Early Bird diberikan kepada travelers yang memesan hotel jauh-jauh hari bahkan 1 tahun sebelum hari check in. Promo ini bermacam-macam Early Bird diberikan kepada travelers yang memesan hotel jauh-jauh hari bahkan 1 tahun sebelum hari check in. Promo ini bermacam-macam jenisnya seperti early bird 3 bulan, 1 bulan, 14 hari hingga 7 hari. Dapatkan promonya dengan melakukan pemesanan jauh hari sebelum kedatangan. Dengan mengatur “CUT OF DATES” kita dapat mengatur jarak minimum check in untuk mendapatkan promo early bird. Max Days Prior to Arrival adalah batas akhir check in, dalam studi kasus setup di atas, tamu hanya akan dapat memesan promo ini jika untuk check in 30 hari kedepan hingga 365 hari kedepan. Jadi jika guest melakukan check",
+          "doc_index": 50,
+          "final_score": 0.39985783100128175,
+          "diversity_penalty": 0,
+          "original_rank": 1,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9996445775032043,
+            "bm25_score": 0,
+            "context_score": 0,
+            "weighted_score": 0.39985783100128175
+          },
+          "context_range": "49-51"
+        },
+        {
+          "rank": 2,
+          "text": "Adjust Room Occupants Anda dapat mengatur berapa banyak orang yang dapat menginap dengan fitur ini. 3.9.3. Bonus Night Promotion (StayPay) Fitur bonus Night / Free night adalah sebuah fitur dimana anda dapat memberikan satu malam gratis atau lebih jika tamu durasi menginap dengan kondisi tertentu. Pemberian menginap gratis atau night free dapat diberikan dalam 3 opsi : malam pertama, malam terakhir, dan harga malam termurah (cheapest rate). Notes: setiap membuat promo bonus night, secara otomatis system akan memberikan diskon 100% tergantung dari opsi apply free night. dari promotion setup diatas kami melakukan setup bonus night menginap dengan minimum stay 7 malam maka cukup membayar 6 malam dan berlaku kelipatan. untuk harga kamar permalam diskon sebesar 20% dari harga dasar kamar (dari harga BAR). Elemen Deskripsi Promo Name Nama dari promo anda ex. “Stay 7 Pay 6” Promo Type Sistem otomatis aktif dengan Stay Pay (jangan diganti) Room Type Pilih tipe kamar yang akan menjadi acuan harga dasar per malam dari promo. Picture Gambar utama promo Include Breakfast Beri tanda rumput jika promo sudah termasuk sarapan. Do not display with regular rates Anda dapat menyembunyikan promo ini, biasanya digunakan untuk membuat secret deals. Artinya promo hanya bisa di beli dengan promo code tertentu. Display Crossout Rate Beri tanda rumput jika ingin menampilkan perubahan diskon sebelum dan sesudah. This promotion is active Centang jika promo masih aktif dan uncheck untuk menonaktifkan promo. Exclusive to Mobile Device Beri tanda rumput jika promo ini khusus dan hanya bisa dibeli oleh pengguna smartphone / mobile device. Inclusion Informasi benefit paket Standalone rate",
+          "doc_index": 46,
+          "final_score": 0.23336783553513002,
+          "diversity_penalty": 0.08059701492537315,
+          "original_rank": 2,
+          "detailed_scores": {
+            "fasttext_similarity": 0.999452531337738,
+            "bm25_score": 0,
+            "context_score": 0,
+            "weighted_score": 0.39978101253509524
+          },
+          "context_range": "45-47"
+        },
+        {
+          "rank": 3,
+          "text": "Contoh diatas promo dengan diskon berjenjang 20% untuk stay 2 malam, 30% untuk stay 5 malam, dan 50% untuk stay 7 malam. Anda dapat menambahkan periode diskon dengan menekan tombol “add discount”. Diskon akan memotong harga dasar (harga BAR) dari setiap tipe kamar yang kita apply untuk promosi tersebut. 3.10. Optional Extra 3.10.1. Optional Extra Optional Extra adalah fitur untuk anda dapat menjual instrumen lainnya diluar akomodasi seperti : Spa, Transport, dan aktivitas liburan lainnya. Contoh Tampilan Optional Extra pada Halaman Reservasi : Elemen Deskripsi Name Nama dari optional extra yang ingin anda jual Book Category Pilih category yang tepat sesuai dengan produk yang dijual. Contoh Per Room per Night seperti; extra bed, extra breakfast. Dan Per Booking seperti; SPA, Tour, Transport, Dinner dll. Description Deskripsi dari produk atau layanan yang anda jual. Internal Note Catatan khusus untuk internal hotel, notes ini tidak akan terlihat oleh tamu saat melakukan reservasi. Date & Rates Pilih tanggal mulai (date from) dan masa berakhir (date to) atau klik tanda silang merah jika tidak ada batasan masa berlaku, serta masukan/ketik harga yang diinginkan, anda juga dapat menambahkan periode tertentu dengan menekan tombol Add Period. Unit Price Pilih unit price yang sesuai dengan produk atau jasa periode tertentu dengan menekan tombol Add Period. Unit Price Pilih unit price yang sesuai dengan produk atau jasa yang dibuat. Max Units Jumlah maksimum yang dapat dipesan Promotions Opsi ini guna memunculkan produk anda pada promotion tertentu. Promotion boleh dipilih atau tidak, karena optional extra bisa juga dipilih/apply ketika membuat promo. Pictures Anda dapat menambahkan gambar, agar produk anda tampak menarik. 3.11. Promotional Code 3.11.1. Promotional Code Dengan promotion code anda dapat memberikan promo khusus yang hanya dapat diakses dengan kode khusus. Promo Code dapat juga digunakan untuk membuat promo tersembunyi khusus tamu repeater. Untuk membuat promotional code anda dapat mengakses: Rate Master > Promotional Code",
+          "doc_index": 54,
+          "final_score": 0.21433523129153723,
+          "diversity_penalty": 0.08482758620689657,
+          "original_rank": 3,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9996362328529358,
+            "bm25_score": 0,
+            "context_score": 0,
+            "weighted_score": 0.3998544931411743
+          },
+          "context_range": "53-55"
+        }
+      ],
+      "metadata": {
+        "model_type": "fasttext_hybrid",
+        "documents_count": 64,
+        "features_used": {
+          "semantic_search": true,
+          "keyword_search": true,
+          "context_scoring": true,
+          "mmr_reranking": true,
+          "gpt_generation": true,
+          "ragas_evaluation": true
+        }
+      },
+      "gpt_generation": {
+        "answer": "Halo! Ada yang bisa saya bantu?",
+        "model_used": "gpt-3.5-turbo",
+        "tokens_used": 1743,
+        "prompt_tokens": 1733,
+        "completion_tokens": 10
+      },
+      "ragas_evaluation": {
+        "context_relevance": 0,
+        "faithfulness": 0,
+        "answer_relevance": 0,
+        "overall_score": 0
+      }
+    }
+  },
+  {
+    "id": 19,
+    "text": "Untuk mensetup room type, Anda dapat mengikuti langkah-langkah berikut:\n1. Buka Menu Setup > Room Type > Create New\n2. Isi informasi seperti Room Classification, Room Name, Room Code, Room Size, Bedding Preference, Bathroom Quantity, Room Description, Smoking Preference, Occupancy In Existing Bed, Maximum Adults, Maximum Children, Maximum Infants, Maximum Occupants, dan Base Rate.\n3. Untuk menambahkan slider, unggah foto terlebih dahulu pada menu media, lalu tekan tombol \"add slider\" dan pilih gambar yang sudah diunggah sebelumnya.\n4. Anda juga dapat mengatur tampilan promo pada halaman booking dengan memilih \"room type\" atau \"promotions\" di Display Preferences.\n5. Terdapat fitur Redirect After Booking yang memungkinkan pengguna diarahkan ke URL tertentu setelah melakukan proses pembayaran.\n\nMohon Maaf, tapi saya tidak dapat menjawab pertanyaan tersebut saat ini.",
+    "conversationId": 2,
+    "userId": 1,
+    "isBot": true,
+    "createdAt": "2026-02-23T04:13:38.000Z",
+    "updatedAt": "2026-02-23T04:13:38.000Z",
+    "results": {
+      "status": "success",
+      "query": "bagaimana caranya mensetup room type?",
+      "processing_time": 2.6408097743988037,
+      "complexity_analysis": {
+        "type": "complex",
+        "score": 0.8500000000000001,
+        "word_count": 5,
+        "unique_words": 5,
+        "question_words": 1,
+        "weights_used": {
+          "fasttext": 0.5,
+          "bm25": 0.3,
+          "context": 0.2
+        }
+      },
+      "search_pipeline": {
+        "hybrid_search_results": 6,
+        "mmr_reranked_results": 3,
+        "mmr_lambda": 0.7,
+        "similarity_threshold": 0.4
+      },
+      "results": [
+        {
+          "rank": 1,
+          "text": "2. Isi semua data pemesanan dan lakukan pembayaran pada Booking Engine. Jika dalam proses pembayaran telah dilakukan dan memasukkan payer info, maka sistem redirect ke halaman di bawah ini: C. Unfinished Payment Selanjutnya yaitu bagian Unfinished Payment, terjadi redirect URL jika gagal dalam proses pembayaran, hal ini mengacu pada penundaan sehingga waktu pembayaran telah habis. Berikut langkah-langkahnya: 1. Isi Link Redirect dan Time Out, lalu Save Setup untuk mengatur bagian ini Note: Pada contoh, link direct akan menuju halaman kontak-kami pada website omni hotelier dengan timeout 2 detik. 2. Isi semua data pemesanan dan lakukan pembayaran pada Booking Engine. Jika dalam proses pembayaran belum diselesaikan, maka sistem redirect ke halaman di bawah ini: 3.3. Room Setup 3.3.1. Add Room Type Fitur ini untuk diperuntukan untuk menambahkan tipe kamar pada property anda sebagai acuan dalam pembuatan promotion. Untuk mengakses room type, buka Menu Setup > Room Type > Create New Elemen Deskripsi Room Classification Anda bisa memilih klasifikasi dari jenis unit kamar anda Room Name Nama dari kamar anda Room Code Kode kamar Room Size Luas kamar ( masukan dalam satuan sqm ) Bedding Preference Opsi untuk mengaktifkan pilihan jenis kasur Bathroom Quantity Jumlah kamar mandi Room Description Detail deskripsi kamar Display Smoking Preference Centang bila kamar tersebut terdapat opsi bebas asap rokok Occupancy In Existing Bed Jumlah orang yang mampu menginap dalam kamar yang tersedia di dalam kamar tidak termasuk extra bed. Maximum Adults Jumlah maksimum orang dewasa yang dapat menginap di dalam kamar termasuk extra bed Maximum Children Jumlah maksimum anak-anak yang diizinkan menginap dalam sebuah kamar termasuk extra bed Maximum Infants Jumlah maksimum bayi yang diizinkan menginap dalam sebuah kamar termasuk extra bed Maximum Occupants Jumlah total orang yang bisa menginap dalam 1 kamar tersebut termasuk dewasa + anak-anak + bayi. Base Rate Harga dasar kamar yang akan dijadikan acuan harga",
+          "doc_index": 18,
+          "final_score": 0.9995929002761841,
+          "diversity_penalty": 0,
+          "original_rank": 1,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9991858005523682,
+            "bm25_score": 1,
+            "context_score": 1,
+            "weighted_score": 0.9995929002761841
+          },
+          "context_range": "17-19"
+        },
+        {
+          "rank": 2,
+          "text": "kolom sebelah kiri dan masukan link halaman yang ingin dituju pada kolom disebelah kanan. 2. Slider Untuk melakukan update slider, anda dapat mengunggah photo terlebih dahulu pada menu media. Anda dapat menambahkan slider dengan menekan tombol “add slider” Setelah itu anda dapat memilih gambar yang sudah diunggah sebelumnya dan jika sudah terseleksi dapat langsung menekan tombol “add media” 3.2.9. Display Preferences Opsi tampilan promo pada halaman booking juga dapat anda kustomisasi jika memilih “room type”, maka tampilan akan menyortir penawaran berdasarkan tipe kamar. Jika anda ingin disortir berdasarkan promo, maka anda dapat memilih by “promotions”. Berikut adalah tampilan tampilan sorting berdasarkan tipe kamar / room type : 3.2.10. Redirect After Booking Redirecting after booking adalah fitur dalam sistem pemesanan online di mana pengguna secara otomatis diarahkan ke URL atau halaman web tertentu ketika melakukan proses pembayaran. Menu ini dapat diakses dengan klik Setup -> Display Preference. Terdapat 3 kondisi pada bagian Redirecting after booking, di antaranya: Complete Payment, Unpaid Payment, dan Unfinished Payment. Masing-masing Terdapat 3 kondisi pada bagian Redirecting after booking, di antaranya: Complete Payment, Unpaid Payment, dan Unfinished Payment. Masing-masing bagian diminta untuk memasukkan Link Redirect dan Time Out (jika tidak diinputkan maka akan tersetting default 5 detik). 3 Kondisi tersebut di antaranya: A. Complete Payment Complete payment berarti bahwa pembayaran telah berhasil dan status reservasi pengguna adalah confirm. Berikut langkah-langkah untuk menambahkan Link Redirect dengan status Complete Payment:",
+          "doc_index": 14,
+          "final_score": 0.574782678109615,
+          "diversity_penalty": 0.04970414201183433,
+          "original_rank": 2,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9987285137176514,
+            "bm25_score": 0.6954214719964187,
+            "context_score": 1,
+            "weighted_score": 0.9079906984577513
+          },
+          "context_range": "13-15"
+        },
+        {
+          "rank": 3,
+          "text": "Stay Date Masa berlaku tinggal / menginap. Sale Date Masa berlaku pemesanan (booking window) Selling by Time Beri tanda rumput jika anda ingin mengcustom waktu penjualan lebih spesifik. Adjust Room Occupants Anda dapat mengatur limitasi jumlah orang yang dapat menginap dengan fitur ini. (abaikan jika tidak diperlukan) 3.9.2. Special Offers Fitur promo Special Offers adalah sebuah fitur dimana anda dapat membuat diskon spesial yang sifatnya tidak ada kondisi-kondisi tertentu.. Kalkulasi diskon special offers : Dari Setup diatas, terdapat contoh sebuah promo dengan diskon 25% dan 30% khusus pengguna smartphone. Elemen Deskripsi Promo Name Nama dari promo anda ex. “Hot Deal” Promo Type Otomatis Special Offers (jangan diganti) Room Type Tipe kamar yang akan menjadi acuan harga dari promo. Picture Gambar utama promo Include Breakfast Beri tanda rumput jika promo sudah termasuk sarapan. Do not display with regular rates Anda dapat menyembunyikan promo ini, biasanya digunakan untuk membuat secret deals. Display Crossout Rate Beri tanda rumput jika ingin menampilkan perubahan diskon sebelum dan sesudah. This promotion is active Untuk mengaktifkan dan menonaktifkan sebuah promo. Exclusive to Mobile Device Beri tanda rumput jika promo ini khusus untuk active Untuk mengaktifkan dan menonaktifkan sebuah promo. Exclusive to Mobile Device Beri tanda rumput jika promo ini khusus untuk pengguna smartphone / mobile Inclusion Silahkan ketik Informasi benefit promo Short Description Deskripsi singkat terkait package Standalone rate Beri tanda rumput jika ada ingin membuat harga Standalone, harga promo tidak akan memotong dari harga dasar kamar melainkan kita akan membuat harga tersendiri. Mobile Discount Aktifkan jika ada ingin memberi diskon khusus untuk pengguna smartphone / mobile Cut of date jarak antara tamu reservasi hingga stay, ex. jika diisi “0” maka tamu dapat melakukan reservasi hari ini dan stay hari ini. Jika diisi “1” maka tamu dapat melakukan reservasi mulai hari ini untuk stay minimal 1 hari setelahnya.",
+          "doc_index": 42,
+          "final_score": 0.567021781921321,
+          "diversity_penalty": 0.04970414201183433,
+          "original_rank": 3,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9970424771308899,
+            "bm25_score": 0.5951632820342164,
+            "context_score": 1,
+            "weighted_score": 0.8770702231757099
+          },
+          "context_range": "41-43"
+        }
+      ],
+      "metadata": {
+        "model_type": "fasttext_hybrid",
+        "documents_count": 64,
+        "features_used": {
+          "semantic_search": true,
+          "keyword_search": true,
+          "context_scoring": true,
+          "mmr_reranking": true,
+          "gpt_generation": true,
+          "ragas_evaluation": true
+        }
+      },
+      "gpt_generation": {
+        "answer": "Untuk mensetup room type, Anda dapat mengikuti langkah-langkah berikut:\n1. Buka Menu Setup > Room Type > Create New\n2. Isi informasi seperti Room Classification, Room Name, Room Code, Room Size, Bedding Preference, Bathroom Quantity, Room Description, Smoking Preference, Occupancy In Existing Bed, Maximum Adults, Maximum Children, Maximum Infants, Maximum Occupants, dan Base Rate.\n3. Untuk menambahkan slider, unggah foto terlebih dahulu pada menu media, lalu tekan tombol \"add slider\" dan pilih gambar yang sudah diunggah sebelumnya.\n4. Anda juga dapat mengatur tampilan promo pada halaman booking dengan memilih \"room type\" atau \"promotions\" di Display Preferences.\n5. Terdapat fitur Redirect After Booking yang memungkinkan pengguna diarahkan ke URL tertentu setelah melakukan proses pembayaran.\n\nMohon Maaf, tapi saya tidak dapat menjawab pertanyaan tersebut saat ini.",
+        "model_used": "gpt-3.5-turbo",
+        "tokens_used": 2014,
+        "prompt_tokens": 1794,
+        "completion_tokens": 220
+      },
+      "ragas_evaluation": {
+        "context_relevance": 1,
+        "faithfulness": 0.9310344827586207,
+        "answer_relevance": 1,
+        "overall_score": 0.9724137931034482
+      }
+    }
+  },
+  {
+    "id": 21,
+    "text": "Set Payment Configuration dapat diakses melalui menu Setup > Payment Configuration. Di sana, Anda dapat mengatur jenis pembayaran atau metode pembayaran yang dimiliki oleh Hotel/Property, seperti Bank Transfer, Credit Card, Doku, Ipay88, Paypal, dan lainnya sesuai dengan kebutuhan properti Anda.",
+    "conversationId": 2,
+    "userId": 1,
+    "isBot": true,
+    "createdAt": "2026-02-23T05:00:33.000Z",
+    "updatedAt": "2026-02-23T05:00:33.000Z",
+    "results": {
+      "status": "success",
+      "query": "lalu untuk set payment configuration ada di bagian mana?",
+      "processing_time": 1.6002097129821777,
+      "complexity_analysis": {
+        "type": "medium",
+        "score": 0.67,
+        "word_count": 9,
+        "unique_words": 9,
+        "question_words": 0,
+        "weights_used": {
+          "fasttext": 0.4,
+          "bm25": 0.4,
+          "context": 0.2
+        }
+      },
+      "search_pipeline": {
+        "hybrid_search_results": 6,
+        "mmr_reranked_results": 3,
+        "mmr_lambda": 0.7,
+        "similarity_threshold": 0.4
+      },
+      "results": [
+        {
+          "rank": 1,
+          "text": "Number Input Maximum Adult* Informasi jumlah maksimal orang dewasa dalam 1 unit kamar Number Input Maximum Children* Informasi Jumlah maksimal anak-anak dalam 1 unit kamar Number Input Maximum Infant* Informasi jumlah maksimal bayi dalam 1 unit kamar Button Add Room Unit Untuk menambahkan room unit baru * hanya sebagai informasi tambahan, tidak mempengaruhi pada hasil pencarian di BE. Karena hasil pencarian berdasarkan adult, child dan infant diambil dari data Occupancy Update di Activity : Fitur untuk mengurutkan activity pada BE 3.3.2. Room Photo Gallery Untuk menambahkan gambar pada list kamar anda, anda bisa menambahkan pada menu gallery. Note: Anda dapat mengunggah lebih dari 1 gambar dalam sekali unggah, dengan catatan total besar gambar dibawah 2MB. 3.4. Payment Configuration 3.4.1. Set Payment Configuration Payment Configuration adalah menu untuk mengatur jenis Payment atau metode pembayaran yang dimiliki oleh Hotel/Property. untuk mengakses cancelation policy anda bisa mengakses : Menu Setup > Payment Configuration Jenis pembayaran ini dapat anda buat sesuai dengan metode pembayaran yang sudah dimiliki oleh Hotel, seperti : Bank Transfer, Credit Card, Doku, Ipay88, Paypal, Midtrans, Faspay, Xendit, Red Dot Payment, Jokul, dan MC Payment. Elemen Deskripsi Name Adalah tipe Payment/Nama dari jenis Payment untuk pembayaran dalam tiap reservasi. Type Tipe ini memungkinkan untuk memilih model pembayaran apa yang akan digunakan pada jenis Payment ini. Apply Credit Card Jenis Credit Card apa saja yang dapat diterima oleh hotel dan dapat di apply oleh tamu yang akan digunakan sebagai jaminan. Pembayaran dilakukan oleh tamu saat check-in Payment Expiration Adalah kolom untuk mengisikan durasi/waktu yang akan diberikan ke tamu dalam melakukan proses pembayaran. Diisi menggunakan acuan menit. Contoh : kita ingin mengaktifkan payment Bank Transfer ( manual ) Elemen Deskripsi Name Adalah tipe Payment/Nama dari jenis Payment untuk pembayaran dalam tiap reservasi. Type Tipe ini memungkinkan untuk memilih model pembayaran apa yang akan digunakan pada jenis Payment ini.",
+          "doc_index": 23,
+          "final_score": 0.9996121644973754,
+          "diversity_penalty": 0,
+          "original_rank": 1,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9990304112434387,
+            "bm25_score": 1,
+            "context_score": 1,
+            "weighted_score": 0.9996121644973754
+          },
+          "context_range": "22-24"
+        },
+        {
+          "rank": 2,
+          "text": "3.2.9. Display Preferences Opsi tampilan promo pada halaman booking juga dapat anda kustomisasi jika memilih “room type”, maka tampilan akan menyortir penawaran berdasarkan tipe kamar. Jika anda ingin disortir berdasarkan promo, maka anda dapat memilih by “promotions”. Berikut adalah tampilan tampilan sorting berdasarkan tipe kamar / room type : 3.2.10. Redirect After Booking Redirecting after booking adalah fitur dalam sistem pemesanan online di mana pengguna secara otomatis diarahkan ke URL atau halaman web tertentu ketika melakukan proses pembayaran. Menu ini dapat diakses dengan klik Setup -> Display Preference. Terdapat 3 kondisi pada bagian Redirecting after booking, di antaranya: Complete Payment, Unpaid Payment, dan Unfinished Payment. Masing-masing Terdapat 3 kondisi pada bagian Redirecting after booking, di antaranya: Complete Payment, Unpaid Payment, dan Unfinished Payment. Masing-masing bagian diminta untuk memasukkan Link Redirect dan Time Out (jika tidak diinputkan maka akan tersetting default 5 detik). 3 Kondisi tersebut di antaranya: A. Complete Payment Complete payment berarti bahwa pembayaran telah berhasil dan status reservasi pengguna adalah confirm. Berikut langkah-langkah untuk menambahkan Link Redirect dengan status Complete Payment: 1. Silahkan input Link Redirect dan kolom Time Out pada bagian Complete Payment, link yang diinputkan akan dimuat setelah berhasil melakukan pembayaran. Jika kolom sudah terisi semua, klik Save Setup. Note: Pada contoh, kolom Link Redirect akan di arahkan ke laman website Omni Hotelier dengan Time Out sebanyak 7 detik. 2. Akses Booking Engine dan lakukan pemesanan dan pembayaran. Setelah pembayaran berhasil, akan tampil website yang diinputkan. B. Unpaid Payment Kondisi ini terjadi ketika user menggunakan metode pembayaran seperti bank transfer. Redirect URL akan ditampilkan ketika proses pembayaran sudah dilakukan namun pembayaran belum mendapatkan persetujuan/dikonfirmasi oleh pihak property. Langkah-langkah unpaid payment sebagai berikut: 1. Input Link",
+          "doc_index": 15,
+          "final_score": 0.35551682577676097,
+          "diversity_penalty": 0.09590163934426231,
+          "original_rank": 2,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9985191226005554,
+            "bm25_score": 0.28308858850692437,
+            "context_score": 0.3333333333333333,
+            "weighted_score": 0.5793097511096585
+          },
+          "context_range": "14-16"
+        },
+        {
+          "rank": 3,
+          "text": "dalam tiap reservasi. Type Tipe ini memungkinkan untuk memilih model pembayaran apa yang akan digunakan pada jenis Payment ini. Pada contoh ini kita pilih Bank Transfer, jika ingin memunculkan kode Qris, menu Qris bisa dicentang. Qris Pada kolom ini kita bisa memasukan foto Barcode Qris Bank yg sudah dimiliki oleh Hotel/Property Qris NMID Pada kolom ini kita bisa memasukan Code ID Qris Bank yang sudah dimiliki oleh Hotel/Property Internal Note Bisa diisikan catatan untuk internal Team Hotel/Property Payment Expiration Adalah kolom untuk mengisikan durasi/waktu yang akan diberikan ke tamu dalam melakukan proses pembayaran. Diisi menggunakan acuan menit, pada contoh ini durasinya diisi 180 menit / 3 jam. 3.5. Cancellation Policy 3.5.1. Cancellation Policy Cancellation Policy adalah sebuah aturan pembatalan reservasi yang dapat anda kustomisasi, ada beberapa format pembatalan reservasi yang dapat anda buat seperti : Full Payment, Deposit, Credit Card Guarantee, dan Free Cancelation. untuk mengakses cancelation policy anda bisa mengakses : Menu Setup > Cancellation Policy Adalah perbedaan antara tiap cancellation yang dapat anda implementasikan sesuai dengan kebutuhan properti anda Elemen Adalah perbedaan antara tiap cancellation yang dapat anda implementasikan sesuai dengan kebutuhan properti anda Elemen Deskripsi Full Payment Adalah tipe cancellation untuk pembayaran penuh dalam tiap reservasi Deposit Tipe ini memungkinkan tamu untuk membayarkan sejumlah deposit saat melakukan reservasi. Nilai deposit bisa dibedakan berdasarkan minimum malam atau presentase nilai total reservasi. Cr. Guarantee Tipe ini tamu akan diminta memasukan credit card namun hanya sebagai jaminan saja. Pembayaran dilakukan oleh tamu saat check-in Free Cancellation Tipe ini memungkinkan tamu untuk melakukan reservasi tanpa melakukan pembayaran online / jaminan credit card.",
+          "doc_index": 26,
+          "final_score": 0.28228235085868253,
+          "diversity_penalty": 0.09590163934426231,
+          "original_rank": 3,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9978109002113342,
+            "bm25_score": 0.1861795409896591,
+            "context_score": 0.3333333333333333,
+            "weighted_score": 0.5402628431470641
+          },
+          "context_range": "25-27"
+        }
+      ],
+      "metadata": {
+        "model_type": "fasttext_hybrid",
+        "documents_count": 64,
+        "features_used": {
+          "semantic_search": true,
+          "keyword_search": true,
+          "context_scoring": true,
+          "mmr_reranking": true,
+          "gpt_generation": true,
+          "ragas_evaluation": true
+        }
+      },
+      "gpt_generation": {
+        "answer": "Set Payment Configuration dapat diakses melalui menu Setup > Payment Configuration. Di sana, Anda dapat mengatur jenis pembayaran atau metode pembayaran yang dimiliki oleh Hotel/Property, seperti Bank Transfer, Credit Card, Doku, Ipay88, Paypal, dan lainnya sesuai dengan kebutuhan properti Anda.",
+        "model_used": "gpt-3.5-turbo",
+        "tokens_used": 1878,
+        "prompt_tokens": 1809,
+        "completion_tokens": 69
+      },
+      "ragas_evaluation": {
+        "context_relevance": 0.5555555555555555,
+        "faithfulness": 1,
+        "answer_relevance": 1,
+        "overall_score": 0.8222222222222222
+      }
+    }
+  },
+  {
+    "id": 23,
+    "text": "Untuk menambahkan room type, Anda dapat mengikuti langkah-langkah berikut:\n1. Buka Menu Setup > Room Type > Create New\n2. Isi informasi seperti Room Classification, Room Name, Room Code, Room Size, Bedding Preference, Bathroom Quantity, Room Description, Smoking Preference, Occupancy In Existing Bed, Maximum Adults, Maximum Children, Maximum Infants, Maximum Occupants, Base Rate, Minimum Rate, Breakfast Rate, Extra Adult Rate, Extra Child Rate, Extra Infant Rate.\n3. Jika Anda memiliki room classification \"Villa\", tambahkan informasi tambahan seperti Room Units, Maximum Adult, Maximum Children, Maximum Infant.\n4. Klik tombol Add Room Unit jika perlu menambahkan room unit baru.\n5. Simpan setup Anda.\n\nDengan mengikuti langkah-langkah di atas, Anda dapat dengan mudah menambahkan room type pada property Anda.",
+    "conversationId": 2,
+    "userId": 1,
+    "isBot": true,
+    "createdAt": "2026-02-23T05:01:36.000Z",
+    "updatedAt": "2026-02-23T05:01:36.000Z",
+    "results": {
+      "status": "success",
+      "query": "bagaimana caranya menambahkan room type?",
+      "processing_time": 2.565232753753662,
+      "complexity_analysis": {
+        "type": "complex",
+        "score": 0.8500000000000001,
+        "word_count": 5,
+        "unique_words": 5,
+        "question_words": 1,
+        "weights_used": {
+          "fasttext": 0.5,
+          "bm25": 0.3,
+          "context": 0.2
+        }
+      },
+      "search_pipeline": {
+        "hybrid_search_results": 6,
+        "mmr_reranked_results": 3,
+        "mmr_lambda": 0.7,
+        "similarity_threshold": 0.4
+      },
+      "results": [
+        {
+          "rank": 1,
+          "text": "2. Isi semua data pemesanan dan lakukan pembayaran pada Booking Engine. Jika dalam proses pembayaran telah dilakukan dan memasukkan payer info, maka sistem redirect ke halaman di bawah ini: C. Unfinished Payment Selanjutnya yaitu bagian Unfinished Payment, terjadi redirect URL jika gagal dalam proses pembayaran, hal ini mengacu pada penundaan sehingga waktu pembayaran telah habis. Berikut langkah-langkahnya: 1. Isi Link Redirect dan Time Out, lalu Save Setup untuk mengatur bagian ini Note: Pada contoh, link direct akan menuju halaman kontak-kami pada website omni hotelier dengan timeout 2 detik. 2. Isi semua data pemesanan dan lakukan pembayaran pada Booking Engine. Jika dalam proses pembayaran belum diselesaikan, maka sistem redirect ke halaman di bawah ini: 3.3. Room Setup 3.3.1. Add Room Type Fitur ini untuk diperuntukan untuk menambahkan tipe kamar pada property anda sebagai acuan dalam pembuatan promotion. Untuk mengakses room type, buka Menu Setup > Room Type > Create New Elemen Deskripsi Room Classification Anda bisa memilih klasifikasi dari jenis unit kamar anda Room Name Nama dari kamar anda Room Code Kode kamar Room Size Luas kamar ( masukan dalam satuan sqm ) Bedding Preference Opsi untuk mengaktifkan pilihan jenis kasur Bathroom Quantity Jumlah kamar mandi Room Description Detail deskripsi kamar Display Smoking Preference Centang bila kamar tersebut terdapat opsi bebas asap rokok Occupancy In Existing Bed Jumlah orang yang mampu menginap dalam kamar yang tersedia di dalam kamar tidak termasuk extra bed. Maximum Adults Jumlah maksimum orang dewasa yang dapat menginap di dalam kamar termasuk extra bed Maximum Children Jumlah maksimum anak-anak yang diizinkan menginap dalam sebuah kamar termasuk extra bed Maximum Infants Jumlah maksimum bayi yang diizinkan menginap dalam sebuah kamar termasuk extra bed Maximum Occupants Jumlah total orang yang bisa menginap dalam 1 kamar tersebut termasuk dewasa + anak-anak + bayi. Base Rate Harga dasar kamar yang akan dijadikan acuan harga",
+          "doc_index": 18,
+          "final_score": 0.999551385641098,
+          "diversity_penalty": 0,
+          "original_rank": 1,
+          "detailed_scores": {
+            "fasttext_similarity": 0.999102771282196,
+            "bm25_score": 1,
+            "context_score": 1,
+            "weighted_score": 0.999551385641098
+          },
+          "context_range": "17-19"
+        },
+        {
+          "rank": 2,
+          "text": "season, anda dapat menambahkan harga extra. Fitur ini juga dapat dipakai untuk extra charge harga Lunch dan Dinner untuk All Inclusive Package. Extra Surcharge berlaku penambahan per kamar atau per person. Elemen Deskripsi Name Nama surcharge Charge Type Ada 2 tipe pemberian surcharge yaitu by person dan by room. jika memilih by person: maka dalam 1 reservasi harga surcharge akan dikalikan dengan jumlah orang/adult yang menginap dalam 1 reservasi. Jika memilih per room maka dalam 1 reservasi harga surcharge hanya akan dikali dengan jumlah room yang dipesan dan lama durasi stay. Exclude From Discount Artinya, extra surcharge tidak akan terpengaruh oleh diskon promo yang kita apply. Ex. surcharged IDR 100,000 per kamar untuk promo Early bird yang sudah ada diskon 25%. Maka akan murni masuk 100,000 sebagai extra surcharged, tidak kena potongan 25%. Extra Charge Masukan harga surcharge. ex. 100,000 Deskription Deskripsi dari extra surcharge, jika ada. Apply Promotions & Room Type Anda dapat memilih type room dan promo mana saja yang akan dikenakan surcharge. Validity Pastikan benar periode surcharge, anda juga dapat menambahkan periode validity dengan menekan tombol add period. 3.13. Agent Rate 3.13.1. Agent Rate menambahkan periode validity dengan menekan tombol add period. 3.13. Agent Rate 3.13.1. Agent Rate Untuk membuat harga untuk agen offline, anda harus membuat promo dengan tahapan yang sama seperti membuat promo biasa. hanya saja setiap pembuatan promo anda harus mengintegrasikan dengan agen yang sudah anda buat sebelumnya, perhatikan Assign Agent.",
+          "doc_index": 60,
+          "final_score": 0.6170826171560291,
+          "diversity_penalty": 0.046927374301675984,
+          "original_rank": 2,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9984012246131897,
+            "bm25_score": 0.784072264544761,
+            "context_score": 1,
+            "weighted_score": 0.9344222916700231
+          },
+          "context_range": "59-61"
+        },
+        {
+          "rank": 3,
+          "text": "tersebut termasuk dewasa + anak-anak + bayi. Base Rate Harga dasar kamar yang akan dijadikan acuan harga dalam promosi (harga ini hanya dipakai di awal set up saja, setelahnya harga bisa berubah/update). Minimum Rate Harga kamar minimum, anda tidak bisa melakukan update harga di kalender dibawah harga minimum Breakfast Rate Harga sarapan, jika anda menjual room only maka system akan secara otomatis menawarkan sarapan pagi berdasarkan harga ini. Extra Adult Rate Harga untuk extra bed / tambahan dewasa Extra Child Rate Harga untuk extra bed / tambahan anak-anak Extra Infant Rate Harga untuk extra bed / tambahan bayi Fitur tambahan informasi untuk room classifications “Villa” Jika room classification yang dipilih adalah villa, maka akan muncul tambahan Field Input untuk informasi tipe-tipe unit kamar yg dimiliki oleh unit villa tsb. Contoh kasus : Room Type : Villa Room Name : Jade Villa Room Units : 1 kamar king/queen bed, 2 kamar queen bed. Jadi totalnya 3 kamar. (Sesuaikan dengan kamar yg dimiliki villa) Number Input Maximum Adult* Informasi jumlah maksimal orang dewasa dalam 1 unit kamar Number Input Maximum Children* Informasi Jumlah maksimal anak-anak dalam 1 unit kamar Number Input Maximum Infant* Informasi jumlah maksimal bayi dalam 1 unit kamar Button Add Room Unit Untuk menambahkan room unit baru * hanya sebagai informasi tambahan, tidak mempengaruhi pada hasil pencarian di BE. Karena hasil pencarian berdasarkan adult, child dan infant diambil dari data Occupancy Update di Activity : Fitur untuk mengurutkan activity pada BE 3.3.2. Room Photo Gallery Untuk menambahkan gambar pada list kamar anda, anda bisa menambahkan pada menu gallery. Note: Anda dapat mengunggah lebih dari 1 gambar dalam sekali unggah, dengan catatan total besar gambar dibawah 2MB.",
+          "doc_index": 21,
+          "final_score": 0.594945733826826,
+          "diversity_penalty": 0.046927374301675984,
+          "original_rank": 3,
+          "detailed_scores": {
+            "fasttext_similarity": 0.9982953071594238,
+            "bm25_score": 0.7790804402383814,
+            "context_score": 1,
+            "weighted_score": 0.9328717856512263
+          },
+          "context_range": "20-22"
+        }
+      ],
+      "metadata": {
+        "model_type": "fasttext_hybrid",
+        "documents_count": 64,
+        "features_used": {
+          "semantic_search": true,
+          "keyword_search": true,
+          "context_scoring": true,
+          "mmr_reranking": true,
+          "gpt_generation": true,
+          "ragas_evaluation": true
+        }
+      },
+      "gpt_generation": {
+        "answer": "Untuk menambahkan room type, Anda dapat mengikuti langkah-langkah berikut:\n1. Buka Menu Setup > Room Type > Create New\n2. Isi informasi seperti Room Classification, Room Name, Room Code, Room Size, Bedding Preference, Bathroom Quantity, Room Description, Smoking Preference, Occupancy In Existing Bed, Maximum Adults, Maximum Children, Maximum Infants, Maximum Occupants, Base Rate, Minimum Rate, Breakfast Rate, Extra Adult Rate, Extra Child Rate, Extra Infant Rate.\n3. Jika Anda memiliki room classification \"Villa\", tambahkan informasi tambahan seperti Room Units, Maximum Adult, Maximum Children, Maximum Infant.\n4. Klik tombol Add Room Unit jika perlu menambahkan room unit baru.\n5. Simpan setup Anda.\n\nDengan mengikuti langkah-langkah di atas, Anda dapat dengan mudah menambahkan room type pada property Anda.",
+        "model_used": "gpt-3.5-turbo",
+        "tokens_used": 1908,
+        "prompt_tokens": 1719,
+        "completion_tokens": 189
+      },
+      "ragas_evaluation": {
+        "context_relevance": 1,
+        "faithfulness": 0.9166666666666666,
+        "answer_relevance": 1,
+        "overall_score": 0.9666666666666668
+      }
+    }
+  }
+]
