@@ -254,11 +254,10 @@ export default function ChatbotDetailsMock() {
    </div>
 
    <Tabs defaultValue="overview" className="w-full">
-    <TabsList className="grid w-full grid-cols-5">
+    <TabsList className="grid w-full grid-cols-4">
      <TabsTrigger value="overview">Overview</TabsTrigger>
      <TabsTrigger value="configuration">Configuration</TabsTrigger>
      <TabsTrigger value="test-chat">Test Chat</TabsTrigger>
-     <TabsTrigger value="analytics">Analytics</TabsTrigger>
      <TabsTrigger value="conversations">Conversations</TabsTrigger>
     </TabsList>
 

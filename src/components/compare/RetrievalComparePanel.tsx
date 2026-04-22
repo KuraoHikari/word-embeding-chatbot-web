@@ -45,7 +45,7 @@ export default function RetrievalComparePanel({ expA, expB }: Props) {
    </div>
 
    {/* Docs count chart */}
-   <Card>
+   {/* <Card>
     <CardHeader>
      <CardTitle className="text-base">Docs Count Over Queries</CardTitle>
      <CardDescription>Retrieved and reranked document counts per query</CardDescription>
@@ -63,7 +63,7 @@ export default function RetrievalComparePanel({ expA, expB }: Props) {
       </AreaChart>
      </ChartContainer>
     </CardContent>
-   </Card>
+   </Card> */}
 
    {/* Top snippets compare */}
    <Card>

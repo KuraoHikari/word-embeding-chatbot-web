@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Bot, FileText, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCreateChatbot } from "@/api/queries/chatbot";
+import { toast } from "sonner";
 
 interface CreateChatbotForm {
  title: string;
@@ -29,11 +30,12 @@ interface CreateChatbotForm {
 export default function CreateChatbot() {
  const navigate = useNavigate();
  const createMutation = useCreateChatbot();
+ const pdfInputRef = useRef<HTMLInputElement | null>(null);
  const [formData, setFormData] = useState<CreateChatbotForm>({
   title: "",
   description: "",
   aiModel: "gpt-3.5-turbo",
-  embeddingModel: "text-embedding-ada-002",
+  embeddingModel: "fasttext",
   temperature: 0.7,
   maxTokens: 1000,
   systemPrompt: "",
@@ -48,7 +50,7 @@ export default function CreateChatbot() {
   e.preventDefault();
 
   if (!formData.pdf) {
-   alert("Please upload a PDF file");
+   toast.warning("Silakan upload file PDF terlebih dahulu.");
    return;
   }
 
@@ -68,11 +70,11 @@ export default function CreateChatbot() {
     pdf: formData.pdf,
    });
 
-   alert("Chatbot created successfully!");
+   toast.success("Chatbot berhasil dibuat.");
    navigate("/chatbot");
   } catch (error) {
    console.error("Error creating chatbot:", error);
-   alert("Failed to create chatbot. Please try again.");
+   toast.error("Gagal membuat chatbot. Silakan coba lagi.");
   }
  };
 
@@ -87,6 +89,17 @@ export default function CreateChatbot() {
   const file = e.target.files?.[0];
   if (file) {
    handleInputChange("pdf", file);
+  }
+ };
+
+ const handleSelectPdfClick = () => {
+  pdfInputRef.current?.click();
+ };
+
+ const handleClearPdf = () => {
+  handleInputChange("pdf", null);
+  if (pdfInputRef.current) {
+   pdfInputRef.current.value = "";
   }
  };
 
@@ -106,6 +119,8 @@ export default function CreateChatbot() {
    </div>
 
    <form onSubmit={handleSubmit}>
+    <input ref={pdfInputRef} id="pdf" type="file" accept=".pdf" onChange={handleFileChange} className="sr-only" />
+
     <Tabs defaultValue="basic" className="w-full">
      <TabsList className="grid w-full grid-cols-3">
       <TabsTrigger value="basic" className="flex items-center gap-2">
@@ -178,8 +193,30 @@ export default function CreateChatbot() {
 
         <div className="space-y-2">
          <Label htmlFor="pdf">Training Data (PDF) *</Label>
-         <Input id="pdf" type="file" accept=".pdf" onChange={handleFileChange} required />
-         {formData.pdf && <p className="text-sm text-muted-foreground">Selected: {formData.pdf.name}</p>}
+         <div className="flex flex-wrap items-center gap-2">
+          <Button type="button" variant="outline" onClick={handleSelectPdfClick}>
+           Pilih PDF
+          </Button>
+          {formData.pdf ? (
+           <Button type="button" variant="ghost" onClick={handleClearPdf}>
+            Hapus File
+           </Button>
+          ) : null}
+         </div>
+
+         <div className="rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+          <p className="font-medium">Peringatan Keamanan Sebelum Upload</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+           <li>Hapus data pribadi: nomor telepon, email, alamat rumah, nomor identitas/paspor, dan data rekening.</li>
+           <li>Hapus kredensial dan rahasia: password, API key, token, sertifikat privat, serta URL internal.</li>
+           <li>Hapus informasi rahasia perusahaan: kontrak, strategi harga, dokumen legal internal, roadmap yang belum rilis, dan data sensitif klien.</li>
+           <li>Dokumen yang diunggah dapat diproses menjadi index/context untuk retrieval, sehingga isi dokumen bisa muncul dalam jawaban chatbot.</li>
+           <li>Pastikan hanya mengunggah konten yang sudah disetujui untuk penggunaan chatbot dan aman untuk direferensikan dalam respons.</li>
+          </ul>
+         </div>
+
+         {!formData.pdf && <p className="text-sm text-muted-foreground">Belum ada file dipilih.</p>}
+         {formData.pdf && <p className="text-sm text-muted-foreground">File terpilih: {formData.pdf.name}</p>}
         </div>
        </CardContent>
       </Card>

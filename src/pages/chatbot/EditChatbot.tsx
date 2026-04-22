@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Bot, FileText, Settings, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGetChatbotById, useUpdateChatbot } from "@/api/queries/chatbot";
 import type { UpdateChatbotPayload } from "@/api/types";
+import { toast } from "sonner";
 
 interface EditChatbotForm {
  title: string;
@@ -31,34 +32,35 @@ export default function EditChatbot() {
  const { id } = useParams<{ id: string }>();
  const navigate = useNavigate();
  const chatbotId = parseInt(id || "0");
+ const pdfInputRef = useRef<HTMLInputElement | null>(null);
 
  const { data: chatbot, isLoading } = useGetChatbotById(chatbotId, !!id);
  const updateMutation = useUpdateChatbot(chatbotId);
 
  const [formData, setFormData] = useState<EditChatbotForm>({
-  title: chatbot?.title || "",
-  description: chatbot?.description || "",
-  aiModel: chatbot?.aiModel || "gpt-3.5-turbo",
-  embeddingModel: chatbot?.embeddingModel || "text-embedding-ada-002",
-  temperature: chatbot?.temperature || 0.7,
-  maxTokens: chatbot?.maxTokens || 1000,
-  systemPrompt: chatbot?.systemPrompt || "",
-  welcomeMessage: chatbot?.welcomeMessage || "Hello! How can I help you today?",
-  suggestionMessage: chatbot?.suggestionMessage || "Ask me anything!",
-  isPublic: chatbot?.isPublic || false,
-  isProposedModel: chatbot?.isProposedModel || false,
+  title: "",
+  description: "",
+  aiModel: "gpt-3.5-turbo",
+  embeddingModel: "fasttext",
+  temperature: 0.7,
+  maxTokens: 1000,
+  systemPrompt: "",
+  welcomeMessage: "Hello! How can I help you today?",
+  suggestionMessage: "Ask me anything!",
+  isPublic: false,
+  isProposedModel: false,
   pdf: null,
  });
 
  // Update form data when chatbot data is loaded
- useState(() => {
+ useEffect(() => {
   if (chatbot) {
    setFormData({
     title: chatbot.title,
     description: chatbot.description || "",
     aiModel: chatbot.aiModel,
     embeddingModel: chatbot.embeddingModel,
-    temperature: chatbot.temperature,
+    temperature: chatbot.temperature / 100,
     maxTokens: chatbot.maxTokens,
     systemPrompt: chatbot.systemPrompt,
     welcomeMessage: chatbot.welcomeMessage,
@@ -67,8 +69,12 @@ export default function EditChatbot() {
     isProposedModel: chatbot.isProposedModel,
     pdf: null,
    });
+
+   if (pdfInputRef.current) {
+    pdfInputRef.current.value = "";
+   }
   }
- });
+ }, [chatbot]);
 
  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -93,11 +99,11 @@ export default function EditChatbot() {
    }
 
    await updateMutation.mutateAsync(payload);
-   alert("Chatbot updated successfully!");
+   toast.success("Chatbot berhasil diperbarui.");
    navigate(`/chatbot/${id}`);
   } catch (error) {
    console.error("Error updating chatbot:", error);
-   alert("Failed to update chatbot. Please try again.");
+   toast.error("Gagal memperbarui chatbot. Silakan coba lagi.");
   }
  };
 
@@ -112,6 +118,17 @@ export default function EditChatbot() {
   const file = e.target.files?.[0];
   if (file) {
    handleInputChange("pdf", file);
+  }
+ };
+
+ const handleSelectPdfClick = () => {
+  pdfInputRef.current?.click();
+ };
+
+ const handleClearPdf = () => {
+  handleInputChange("pdf", null);
+  if (pdfInputRef.current) {
+   pdfInputRef.current.value = "";
   }
  };
 
@@ -166,6 +183,8 @@ export default function EditChatbot() {
    </div>
 
    <form onSubmit={handleSubmit}>
+    <input ref={pdfInputRef} id="pdf" type="file" accept=".pdf" onChange={handleFileChange} className="sr-only" />
+
     <Tabs defaultValue="basic" className="w-full">
      <TabsList className="grid w-full grid-cols-3">
       <TabsTrigger value="basic" className="flex items-center gap-2">
@@ -238,9 +257,31 @@ export default function EditChatbot() {
 
         <div className="space-y-2">
          <Label htmlFor="pdf">Update Training Data (PDF)</Label>
-         <Input id="pdf" type="file" accept=".pdf" onChange={handleFileChange} />
-         {formData.pdf && <p className="text-sm text-muted-foreground">Selected: {formData.pdf.name}</p>}
-         <p className="text-sm text-muted-foreground">Upload new PDF to replace the current training data (optional)</p>
+         <div className="flex flex-wrap items-center gap-2">
+          <Button type="button" variant="outline" onClick={handleSelectPdfClick}>
+           Pilih PDF
+          </Button>
+          {formData.pdf ? (
+           <Button type="button" variant="ghost" onClick={handleClearPdf}>
+            Hapus File
+           </Button>
+          ) : null}
+         </div>
+
+         <div className="rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+          <p className="font-medium">Peringatan Keamanan Sebelum Upload</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+           <li>Hapus data pribadi: nomor telepon, email, alamat rumah, nomor identitas/paspor, dan data rekening.</li>
+           <li>Hapus kredensial dan rahasia: password, API key, token, sertifikat privat, serta URL internal.</li>
+           <li>Hapus informasi rahasia perusahaan: kontrak, strategi harga, dokumen legal internal, roadmap yang belum rilis, dan data sensitif klien.</li>
+           <li>Dokumen yang diunggah dapat diproses menjadi index/context untuk retrieval, sehingga isi dokumen bisa muncul dalam jawaban chatbot.</li>
+           <li>Pastikan hanya mengunggah konten yang sudah disetujui untuk penggunaan chatbot dan aman untuk direferensikan dalam respons.</li>
+          </ul>
+         </div>
+
+         {!formData.pdf && <p className="text-sm text-muted-foreground">Belum ada file dipilih (opsional).</p>}
+         {formData.pdf && <p className="text-sm text-muted-foreground">File terpilih: {formData.pdf.name}</p>}
+         <p className="text-sm text-muted-foreground">Upload PDF baru jika ingin mengganti data training yang saat ini digunakan (opsional).</p>
         </div>
        </CardContent>
       </Card>
@@ -275,9 +316,8 @@ export default function EditChatbot() {
            <SelectValue />
           </SelectTrigger>
           <SelectContent>
-           <SelectItem value="text-embedding-ada-002">Text Embedding Ada 002</SelectItem>
-           <SelectItem value="text-embedding-3-small">Text Embedding 3 Small</SelectItem>
-           <SelectItem value="text-embedding-3-large">Text Embedding 3 Large</SelectItem>
+           <SelectItem value="fasttext">fasttext</SelectItem>
+           <SelectItem value="word2vec">word2vec</SelectItem>
           </SelectContent>
          </Select>
         </div>
