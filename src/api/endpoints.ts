@@ -8,6 +8,7 @@ export const endpoints = {
   logout: `auth/logout`,
   refresh: `auth/refresh`,
   me: `auth/me`,
+  dashboard: `auth/me/dashboard`,
   forgotPassword: `auth/forgot-password`,
   resetPassword: `auth/reset-password`,
  },

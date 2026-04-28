@@ -139,7 +139,7 @@ function normalizeHybridRecord(item: any, index: number): NormalizedRecord {
  const topSnippets: RetrievalSnippet[] = rawResults.map((r: any) => ({
   rank: r?.rank ?? 0,
   text: r?.text,
-  score: r?.final_score ?? r?.similarity_score,
+  score: r?.detailed_scores?.fasttext_similarity ?? r?.similarity_score,
   meta: {
    doc_index: r?.doc_index,
    original_rank: r?.original_rank,

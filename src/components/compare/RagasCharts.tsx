@@ -83,11 +83,13 @@ export default function RagasCharts({ expA, expB }: Props) {
      </div>
     </CardHeader>
     <CardContent>
-     <ChartContainer config={trendConfig} className="h-[260px] w-full">
-      <AreaChart data={trendData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+     <ChartContainer config={trendConfig} className="h-[265px] w-full">
+      <AreaChart data={trendData} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
        <CartesianGrid strokeDasharray="3 3" />
-       <XAxis dataKey="index" fontSize={12} tickLine={false} axisLine={false} />
-       <YAxis fontSize={12} tickLine={false} axisLine={false} domain={[0, 1]} />
+       <XAxis dataKey="index" fontSize={12} tickLine={false} axisLine={false} label={{ value: "query", position: "insideBottom", offset: -5 }} />
+
+       <YAxis fontSize={12} tickLine={false} axisLine={false} domain={[0, 1]} label={{ value: "score", angle: -90, position: "insideLeft", offset: 0 }} />
+
        <ChartTooltip content={<ChartTooltipContent />} />
        <Area dataKey={keyA} type="monotone" fill={`var(--color-${keyA})`} fillOpacity={0.2} stroke={`var(--color-${keyA})`} strokeWidth={2} />
        <Area dataKey={keyB} type="monotone" fill={`var(--color-${keyB})`} fillOpacity={0.2} stroke={`var(--color-${keyB})`} strokeWidth={2} />
@@ -97,7 +99,7 @@ export default function RagasCharts({ expA, expB }: Props) {
    </Card>
 
    {/* Distribution histogram */}
-   <Card>
+   {/* <Card>
     <CardHeader>
      <CardTitle className="text-base">Overall Score Distribution</CardTitle>
      <CardDescription>Bucket histogram 0–1 (A vs B)</CardDescription>
@@ -107,6 +109,7 @@ export default function RagasCharts({ expA, expB }: Props) {
       <BarChart data={distData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
        <CartesianGrid strokeDasharray="3 3" />
        <XAxis dataKey="rangeLabel" fontSize={12} tickLine={false} axisLine={false} />
+
        <YAxis fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
        <ChartTooltip content={<ChartTooltipContent />} />
        <Bar dataKey="countA" fill="var(--color-countA)" radius={[4, 4, 0, 0]} />
@@ -114,7 +117,7 @@ export default function RagasCharts({ expA, expB }: Props) {
       </BarChart>
      </ChartContainer>
     </CardContent>
-   </Card>
+   </Card> */}
 
    {/* Biggest Wins / Regressions table */}
    <Card>

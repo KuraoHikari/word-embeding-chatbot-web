@@ -18,6 +18,64 @@ export interface ApiResponse<T = unknown> {
  message?: string;
 }
 
+// Dashboard types
+export interface DashboardSummary {
+ totalChatbots: number;
+ totalConversations: number;
+ totalMessages: number;
+ totalContacts: number;
+ totalAiResponses: number;
+ avgMessagesPerConversation: number;
+}
+
+export interface DashboardTrendPoint {
+ period: string;
+ count: number;
+}
+
+export interface DashboardTrendGroup {
+ daily: DashboardTrendPoint[];
+ weekly: DashboardTrendPoint[];
+ monthly: DashboardTrendPoint[];
+}
+
+export interface DashboardTrends {
+ incomingMessages: DashboardTrendGroup;
+ newConversations: DashboardTrendGroup;
+ newContacts: DashboardTrendGroup;
+ autoReplyRatio: number;
+}
+
+export interface DashboardTopChatbotByConversations {
+ chatbotId: number;
+ title: string;
+ conversations: number;
+}
+
+export interface DashboardTopChatbotByMessages {
+ chatbotId: number;
+ title: string;
+ messages: number;
+}
+
+export interface DashboardTopChatbotByAvgUserMessageLength {
+ chatbotId: number;
+ title: string;
+ avgLength: number;
+}
+
+export interface DashboardPerformance {
+ topChatbotsByConversations: DashboardTopChatbotByConversations[];
+ topChatbotsByMessages: DashboardTopChatbotByMessages[];
+ topChatbotsByAvgUserMessageLength: DashboardTopChatbotByAvgUserMessageLength[];
+}
+
+export interface DashboardResponse {
+ summary: DashboardSummary;
+ trends: DashboardTrends;
+ performance: DashboardPerformance;
+}
+
 // Chatbot types
 export interface Chatbot {
  id: number;

@@ -529,7 +529,7 @@ export default function ChatbotDetailsMock() {
                   <div key={index} className="bg-muted p-3 rounded text-sm space-y-1">
                    <div className="flex justify-between items-start">
                     <span className="font-semibold">Rank #{result.rank}</span>
-                    {"final_score" in result && <Badge variant="outline">Score: {result.final_score?.toFixed(4)}</Badge>}
+                    {"final_score" in result && <Badge variant="outline">Similarity: {result.detailed_scores?.fasttext_similarity?.toFixed(4)}</Badge>}
                     {"similarity_score" in result && <Badge variant="outline">Similarity: {result.similarity_score?.toFixed(4)}</Badge>}
                    </div>
                    <p className="text-xs line-clamp-2">{result.text}</p>

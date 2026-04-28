@@ -48,10 +48,10 @@ export default function OverviewCharts({ expA, expB }: Props) {
       <p className="text-sm text-muted-foreground text-center py-8">processing_time not found</p>
      ) : (
       <ChartContainer config={latencyConfig} className="h-[280px] w-full">
-       <AreaChart data={latencyData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+       <AreaChart data={latencyData} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="index" tickLine={false} axisLine={false} fontSize={12} />
-        <YAxis tickLine={false} axisLine={false} fontSize={12} tickFormatter={(v) => `${v.toFixed(0)}ms`} />
+        <XAxis dataKey="index" tickLine={false} axisLine={false} fontSize={12} label={{ value: "query", position: "insideBottom", offset: -5 }} />
+        <YAxis tickLine={false} axisLine={false} fontSize={12} tickFormatter={(v) => `${v.toFixed(0)}ms`} label={{ value: "latency (ms)", angle: -90, position: "insideLeft", offset: 0 }} />
         <ChartTooltip content={<ChartTooltipContent />} />
         <Area dataKey="latencyA" type="monotone" fill="var(--color-latencyA)" fillOpacity={0.2} stroke="var(--color-latencyA)" strokeWidth={2} />
         <Area dataKey="latencyB" type="monotone" fill="var(--color-latencyB)" fillOpacity={0.2} stroke="var(--color-latencyB)" strokeWidth={2} />
@@ -72,10 +72,10 @@ export default function OverviewCharts({ expA, expB }: Props) {
       <p className="text-sm text-muted-foreground text-center py-8">Token data not found</p>
      ) : (
       <ChartContainer config={tokenConfig} className="h-[280px] w-full">
-       <AreaChart data={tokenData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+       <AreaChart data={tokenData} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="index" tickLine={false} axisLine={false} fontSize={12} />
-        <YAxis tickLine={false} axisLine={false} fontSize={12} />
+        <XAxis dataKey="index" tickLine={false} axisLine={false} fontSize={12} label={{ value: "query", position: "insideBottom", offset: -5 }} />
+        <YAxis tickLine={false} axisLine={false} fontSize={12} label={{ value: "tokens", angle: -90, position: "insideLeft", offset: 0 }} />
         <ChartTooltip content={<ChartTooltipContent />} />
         <Area dataKey="promptA" type="monotone" fill="var(--color-promptA)" fillOpacity={0.15} stroke="var(--color-promptA)" strokeWidth={2} />
         <Area dataKey="completionA" type="monotone" fill="var(--color-completionA)" fillOpacity={0.15} stroke="var(--color-completionA)" strokeWidth={2} strokeDasharray="5 5" />
